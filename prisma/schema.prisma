@@ -1,11 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "esm"
 }
 
 datasource db {
@@ -36,4 +32,132 @@ model Favorite {
 
   @@unique([userId, launchId])
   @@map("favorites")
+}
+
+
+model Agency {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  country     String?
+  type        AgencyType?
+  description String?
+  website     String?
+  logoUrl     String?
+  foundedYear Int?
+
+  missions    Mission[]
+  rockets     Rocket[]
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Rocket {
+  id             String       @id @default(cuid())
+  name           String       @unique
+  slug           String       @unique
+  manufacturer   String?
+  description    String?
+  reusable       Boolean      @default(false)
+  status         RocketStatus?
+  heightMeters   Float?
+  diameterMeters Float?
+  massKg         Int?
+  payloadToLeoKg Int?
+  payloadToGtoKg Int?
+  firstFlightDate DateTime?
+  imageUrl       String?
+
+  agencyId       String?
+  agency         Agency?      @relation(fields: [agencyId], references: [id])
+
+  missions       Mission[]
+
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model LaunchSite {
+  id           String    @id @default(cuid())
+  name         String    @unique
+  slug         String    @unique
+  code         String?   @unique
+  locationName String?
+  country      String?
+  region       String?
+  latitude     Float?
+  longitude    Float?
+  description  String?
+  imageUrl     String?
+
+  missions     Mission[]
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Mission {
+  id           String        @id @default(cuid())
+  name         String
+  slug         String        @unique
+  description  String?
+  missionType  MissionType?
+  status       MissionStatus @default(SCHEDULED)
+
+  launchDate   DateTime?
+  windowStart  DateTime?
+  windowEnd    DateTime?
+
+  destination  String?
+  orbit        String?
+  isCrewed     Boolean       @default(false)
+
+  imageUrl     String?
+  detailsUrl   String?
+
+  agencyId     String
+  rocketId     String
+  launchSiteId String
+
+  agency       Agency        @relation(fields: [agencyId], references: [id])
+  rocket       Rocket        @relation(fields: [rocketId], references: [id])
+  launchSite   LaunchSite    @relation(fields: [launchSiteId], references: [id])
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@unique([name, launchDate])
+}
+
+enum RocketStatus {
+  ACTIVE
+  RETIRED
+  IN_DEVELOPMENT
+}
+
+enum AgencyType {
+  GOVERNMENT
+  PRIVATE
+  INTERNATIONAL
+}
+
+enum MissionType {
+  CREWED
+  CARGO
+  SATELLITE
+  SCIENTIFIC
+  EXPLORATION
+  TEST_FLIGHT
+  RESUPPLY
+  MILITARY
+}
+
+enum MissionStatus {
+  SCHEDULED
+  CONFIRMED
+  DELAYED
+  SCRUBBED
+  CANCELLED
+  COMPLETED
 }
