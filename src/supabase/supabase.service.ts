@@ -9,7 +9,7 @@ export class SupabaseService {
   getClient() {
     return createClient(
       this.configService.get<string>('SUPABASE_URL')!,
-      this.configService.get<string>('SUPABASE_ANON_KEY')!,
+      this.configService.get<string>('SUPABASE_PUBLISHABLE_KEY')!,
     );
   }
 

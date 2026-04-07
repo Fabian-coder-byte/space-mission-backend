@@ -295,8 +295,8 @@ export type MissionWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   agency?: Prisma.XOR<Prisma.AgencyScalarRelationFilter, Prisma.AgencyWhereInput>
-  rocket?: Prisma.XOR<Prisma.RocketScalarRelationFilter, Prisma.RocketWhereInput>
   launchSite?: Prisma.XOR<Prisma.LaunchSiteScalarRelationFilter, Prisma.LaunchSiteWhereInput>
+  rocket?: Prisma.XOR<Prisma.RocketScalarRelationFilter, Prisma.RocketWhereInput>
 }
 
 export type MissionOrderByWithRelationInput = {
@@ -320,8 +320,8 @@ export type MissionOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   agency?: Prisma.AgencyOrderByWithRelationInput
-  rocket?: Prisma.RocketOrderByWithRelationInput
   launchSite?: Prisma.LaunchSiteOrderByWithRelationInput
+  rocket?: Prisma.RocketOrderByWithRelationInput
 }
 
 export type MissionWhereUniqueInput = Prisma.AtLeast<{
@@ -349,8 +349,8 @@ export type MissionWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   agency?: Prisma.XOR<Prisma.AgencyScalarRelationFilter, Prisma.AgencyWhereInput>
-  rocket?: Prisma.XOR<Prisma.RocketScalarRelationFilter, Prisma.RocketWhereInput>
   launchSite?: Prisma.XOR<Prisma.LaunchSiteScalarRelationFilter, Prisma.LaunchSiteWhereInput>
+  rocket?: Prisma.XOR<Prisma.RocketScalarRelationFilter, Prisma.RocketWhereInput>
 }, "id" | "slug" | "name_launchDate">
 
 export type MissionOrderByWithAggregationInput = {
@@ -421,8 +421,8 @@ export type MissionCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   agency: Prisma.AgencyCreateNestedOneWithoutMissionsInput
-  rocket: Prisma.RocketCreateNestedOneWithoutMissionsInput
   launchSite: Prisma.LaunchSiteCreateNestedOneWithoutMissionsInput
+  rocket: Prisma.RocketCreateNestedOneWithoutMissionsInput
 }
 
 export type MissionUncheckedCreateInput = {
@@ -465,8 +465,8 @@ export type MissionUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agency?: Prisma.AgencyUpdateOneRequiredWithoutMissionsNestedInput
-  rocket?: Prisma.RocketUpdateOneRequiredWithoutMissionsNestedInput
   launchSite?: Prisma.LaunchSiteUpdateOneRequiredWithoutMissionsNestedInput
+  rocket?: Prisma.RocketUpdateOneRequiredWithoutMissionsNestedInput
 }
 
 export type MissionUncheckedUpdateInput = {
@@ -786,8 +786,8 @@ export type MissionCreateWithoutAgencyInput = {
   detailsUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  rocket: Prisma.RocketCreateNestedOneWithoutMissionsInput
   launchSite: Prisma.LaunchSiteCreateNestedOneWithoutMissionsInput
+  rocket: Prisma.RocketCreateNestedOneWithoutMissionsInput
 }
 
 export type MissionUncheckedCreateWithoutAgencyInput = {
@@ -1036,8 +1036,8 @@ export type MissionUpdateWithoutAgencyInput = {
   detailsUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  rocket?: Prisma.RocketUpdateOneRequiredWithoutMissionsNestedInput
   launchSite?: Prisma.LaunchSiteUpdateOneRequiredWithoutMissionsNestedInput
+  rocket?: Prisma.RocketUpdateOneRequiredWithoutMissionsNestedInput
 }
 
 export type MissionUncheckedUpdateWithoutAgencyInput = {
@@ -1273,8 +1273,8 @@ export type MissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   updatedAt?: boolean
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
-  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
   launchSite?: boolean | Prisma.LaunchSiteDefaultArgs<ExtArgs>
+  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mission"]>
 
 export type MissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1298,8 +1298,8 @@ export type MissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   createdAt?: boolean
   updatedAt?: boolean
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
-  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
   launchSite?: boolean | Prisma.LaunchSiteDefaultArgs<ExtArgs>
+  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mission"]>
 
 export type MissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1323,8 +1323,8 @@ export type MissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   createdAt?: boolean
   updatedAt?: boolean
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
-  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
   launchSite?: boolean | Prisma.LaunchSiteDefaultArgs<ExtArgs>
+  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mission"]>
 
 export type MissionSelectScalar = {
@@ -1352,26 +1352,26 @@ export type MissionSelectScalar = {
 export type MissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "description" | "missionType" | "status" | "launchDate" | "windowStart" | "windowEnd" | "destination" | "orbit" | "isCrewed" | "imageUrl" | "detailsUrl" | "agencyId" | "rocketId" | "launchSiteId" | "createdAt" | "updatedAt", ExtArgs["result"]["mission"]>
 export type MissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
-  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
   launchSite?: boolean | Prisma.LaunchSiteDefaultArgs<ExtArgs>
+  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
 }
 export type MissionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
-  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
   launchSite?: boolean | Prisma.LaunchSiteDefaultArgs<ExtArgs>
+  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
 }
 export type MissionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
-  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
   launchSite?: boolean | Prisma.LaunchSiteDefaultArgs<ExtArgs>
+  rocket?: boolean | Prisma.RocketDefaultArgs<ExtArgs>
 }
 
 export type $MissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Mission"
   objects: {
     agency: Prisma.$AgencyPayload<ExtArgs>
-    rocket: Prisma.$RocketPayload<ExtArgs>
     launchSite: Prisma.$LaunchSitePayload<ExtArgs>
+    rocket: Prisma.$RocketPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1788,8 +1788,8 @@ readonly fields: MissionFieldRefs;
 export interface Prisma__MissionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   agency<T extends Prisma.AgencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AgencyDefaultArgs<ExtArgs>>): Prisma.Prisma__AgencyClient<runtime.Types.Result.GetResult<Prisma.$AgencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  rocket<T extends Prisma.RocketDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RocketDefaultArgs<ExtArgs>>): Prisma.Prisma__RocketClient<runtime.Types.Result.GetResult<Prisma.$RocketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   launchSite<T extends Prisma.LaunchSiteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LaunchSiteDefaultArgs<ExtArgs>>): Prisma.Prisma__LaunchSiteClient<runtime.Types.Result.GetResult<Prisma.$LaunchSitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  rocket<T extends Prisma.RocketDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RocketDefaultArgs<ExtArgs>>): Prisma.Prisma__RocketClient<runtime.Types.Result.GetResult<Prisma.$RocketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

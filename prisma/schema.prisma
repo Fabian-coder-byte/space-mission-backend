@@ -1,7 +1,6 @@
 generator client {
-  provider     = "prisma-client"
-  output       = "../src/generated/prisma"
-  moduleFormat = "esm"
+  provider = "prisma-client"
+  output   = "./generated"
 }
 
 datasource db {
@@ -12,70 +11,62 @@ model Profile {
   id        String     @id @db.Uuid
   username  String?    @unique
   createdAt DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
-
   favorites Favorite[]
 
   @@map("profiles")
 }
 
 model Favorite {
-  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId    String    @map("user_id") @db.Uuid
-  launchId  String    @map("launch_id")
-  launchName String   @map("launch_name")
-  agencyName String?  @map("agency_name")
-  net       DateTime? @db.Timestamptz(6)
-  imageUrl  String?   @map("image_url")
-  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
-
-  profile   Profile   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId     String    @map("user_id") @db.Uuid
+  launchId   String    @map("launch_id")
+  launchName String    @map("launch_name")
+  agencyName String?   @map("agency_name")
+  net        DateTime? @db.Timestamptz(6)
+  imageUrl   String?   @map("image_url")
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  profile    Profile   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, launchId])
   @@map("favorites")
 }
 
-
 model Agency {
-  id          String    @id @default(cuid())
-  name        String    @unique
-  slug        String    @unique
+  id          String      @id @default(cuid())
+  name        String      @unique
+  slug        String      @unique
   country     String?
   type        AgencyType?
   description String?
   website     String?
   logoUrl     String?
   foundedYear Int?
-
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   missions    Mission[]
   rockets     Rocket[]
-
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
 }
 
 model Rocket {
-  id             String       @id @default(cuid())
-  name           String       @unique
-  slug           String       @unique
-  manufacturer   String?
-  description    String?
-  reusable       Boolean      @default(false)
-  status         RocketStatus?
-  heightMeters   Float?
-  diameterMeters Float?
-  massKg         Int?
-  payloadToLeoKg Int?
-  payloadToGtoKg Int?
+  id              String        @id @default(cuid())
+  name            String        @unique
+  slug            String        @unique
+  manufacturer    String?
+  description     String?
+  reusable        Boolean       @default(false)
+  status          RocketStatus?
+  heightMeters    Float?
+  diameterMeters  Float?
+  massKg          Int?
+  payloadToLeoKg  Int?
+  payloadToGtoKg  Int?
   firstFlightDate DateTime?
-  imageUrl       String?
-
-  agencyId       String?
-  agency         Agency?      @relation(fields: [agencyId], references: [id])
-
-  missions       Mission[]
-
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  imageUrl        String?
+  agencyId        String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  missions        Mission[]
+  agency          Agency?       @relation(fields: [agencyId], references: [id])
 }
 
 model LaunchSite {
@@ -90,11 +81,9 @@ model LaunchSite {
   longitude    Float?
   description  String?
   imageUrl     String?
-
-  missions     Mission[]
-
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+  missions     Mission[]
 }
 
 model Mission {
@@ -104,28 +93,22 @@ model Mission {
   description  String?
   missionType  MissionType?
   status       MissionStatus @default(SCHEDULED)
-
   launchDate   DateTime?
   windowStart  DateTime?
   windowEnd    DateTime?
-
   destination  String?
   orbit        String?
   isCrewed     Boolean       @default(false)
-
   imageUrl     String?
   detailsUrl   String?
-
   agencyId     String
   rocketId     String
   launchSiteId String
-
-  agency       Agency        @relation(fields: [agencyId], references: [id])
-  rocket       Rocket        @relation(fields: [rocketId], references: [id])
-  launchSite   LaunchSite    @relation(fields: [launchSiteId], references: [id])
-
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
+  agency       Agency        @relation(fields: [agencyId], references: [id])
+  launchSite   LaunchSite    @relation(fields: [launchSiteId], references: [id])
+  rocket       Rocket        @relation(fields: [rocketId], references: [id])
 
   @@unique([name, launchDate])
 }
