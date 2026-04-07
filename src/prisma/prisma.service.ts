@@ -1,16 +1,28 @@
-// import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
-// import { PrismaClient } from '../../prisma/generated/client';
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import 'dotenv/config';
+import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaClient } from 'prisma/generated/client';
 
-// @Injectable()
-// export class PrismaService
-//   extends PrismaClient
-//   implements OnModuleInit, OnModuleDestroy
-// {
-//   async onModuleInit() {
-//     await this.$connect();
-//   }
+@Injectable()
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit, OnModuleDestroy
+{
+  constructor() {
+    const adapter = new PrismaPg({
+      connectionString: process.env.DIRECT_URL!,
+    });
 
-//   async onModuleDestroy() {
-//     await this.$disconnect();
-//   }
-// }
+    super({ adapter });
+  }
+
+  async onModuleInit() {
+    await this.$connect();
+  }
+
+  async onModuleDestroy() {
+    await this.$disconnect();
+  }
+}
