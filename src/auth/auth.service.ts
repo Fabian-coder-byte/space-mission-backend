@@ -3,13 +3,13 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { LoginDto } from './dto/LoginDto';
-import { RegisterDto } from './dto/RegisterDto';
-import { RefreshTokenDto } from './dto/RefreshTokenDto';
-import { ResetPasswordDto } from './dto/ResetPasswordDto';
-import { ResendConfirmationDto } from './dto/ResendConfirmationDto';
-import { SupabaseService } from 'src/supabase/supabase.service';
-import { ForgotPasswordDto } from './dto/ForgotPasswordDto';
+import { LoginDto } from './dto/LoginDto.js';
+import { RegisterDto } from './dto/RegisterDto.js';
+import { RefreshTokenDto } from './dto/RefreshTokenDto.js';
+import { ResetPasswordDto } from './dto/ResetPasswordDto.js';
+import { ResendConfirmationDto } from './dto/ResendConfirmationDto.js';
+import { SupabaseService } from '../supabase/supabase.service.js';
+import { ForgotPasswordDto } from './dto/ForgotPasswordDto.js';
 
 @Injectable()
 export class AuthService {
