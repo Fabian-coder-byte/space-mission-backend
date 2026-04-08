@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import {
   Body,
   Controller,
@@ -25,39 +27,39 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() registerDto: RegisterDto) {
-    return this.authService.register(registerDto);
+    return await this.authService.register(registerDto);
   }
 
   @Post('logout')
   async logout(@Headers('authorization') authorization?: string) {
     const accessToken = this.extractBearerToken(authorization);
-    return this.authService.logout(accessToken);
+    return await this.authService.logout(accessToken);
   }
 
   @Post('refresh')
   async refresh(@Body() dto: RefreshTokenDto) {
-    return this.authService.refresh(dto);
+    return await this.authService.refresh(dto);
   }
 
   @Get('me')
   async me(@Headers('authorization') authorization?: string) {
     const accessToken = this.extractBearerToken(authorization);
-    return this.authService.me(accessToken);
+    return await this.authService.me(accessToken);
   }
 
   @Post('resend-confirmation')
   async resendConfirmation(@Body() dto: ResendConfirmationDto) {
-    return this.authService.resendConfirmation(dto);
+    return await this.authService.resendConfirmation(dto);
   }
 
   @Post('forgot-password')
   async forgotPassword(@Body() dto: ForgotPasswordDto) {
-    return this.authService.forgotPassword(dto);
+    return await this.authService.forgotPassword(dto);
   }
 
   @Post('reset-password')
   async resetPassword(@Body() dto: ResetPasswordDto) {
-    return this.authService.resetPassword(dto);
+    return await this.authService.resetPassword(dto);
   }
 
   private extractBearerToken(authorization?: string): string {

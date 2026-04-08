@@ -12,10 +12,9 @@ datasource db {
 
 model Profile {
   id        String     @id @db.Uuid
-  username  String?    @unique
   createdAt DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
   favorites Favorite[]
-
+  role Role @default(USER)
   @@map("profiles")
 }
 
@@ -48,6 +47,8 @@ model Agency {
   updatedAt   DateTime    @updatedAt
   missions    Mission[]
   rockets     Rocket[]
+
+  @@map("agency")
 }
 
 model Rocket {
@@ -70,6 +71,7 @@ model Rocket {
   updatedAt       DateTime      @updatedAt
   missions        Mission[]
   agency          Agency?       @relation(fields: [agencyId], references: [id])
+  @@map("rocket")
 }
 
 model LaunchSite {
@@ -87,6 +89,8 @@ model LaunchSite {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   missions     Mission[]
+  
+  @@map("launch_site")
 }
 
 model Mission {
@@ -114,6 +118,7 @@ model Mission {
   rocket       Rocket        @relation(fields: [rocketId], references: [id])
 
   @@unique([name, launchDate])
+  @@map("mission")
 }
 
 enum RocketStatus {
@@ -126,6 +131,11 @@ enum AgencyType {
   GOVERNMENT
   PRIVATE
   INTERNATIONAL
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
 enum MissionType {

@@ -27,6 +27,14 @@ export const AgencyType = {
 export type AgencyType = (typeof AgencyType)[keyof typeof AgencyType]
 
 
+export const Role = {
+  ADMIN: 'ADMIN',
+  USER: 'USER'
+} as const
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+
 export const MissionType = {
   CREWED: 'CREWED',
   CARGO: 'CARGO',

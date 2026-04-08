@@ -26,40 +26,40 @@ export type AggregateProfile = {
 
 export type ProfileMinAggregateOutputType = {
   id: string | null
-  username: string | null
   createdAt: Date | null
+  role: $Enums.Role | null
 }
 
 export type ProfileMaxAggregateOutputType = {
   id: string | null
-  username: string | null
   createdAt: Date | null
+  role: $Enums.Role | null
 }
 
 export type ProfileCountAggregateOutputType = {
   id: number
-  username: number
   createdAt: number
+  role: number
   _all: number
 }
 
 
 export type ProfileMinAggregateInputType = {
   id?: true
-  username?: true
   createdAt?: true
+  role?: true
 }
 
 export type ProfileMaxAggregateInputType = {
   id?: true
-  username?: true
   createdAt?: true
+  role?: true
 }
 
 export type ProfileCountAggregateInputType = {
   id?: true
-  username?: true
   createdAt?: true
+  role?: true
   _all?: true
 }
 
@@ -137,8 +137,8 @@ export type ProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type ProfileGroupByOutputType = {
   id: string
-  username: string | null
   createdAt: Date
+  role: $Enums.Role
   _count: ProfileCountAggregateOutputType | null
   _min: ProfileMinAggregateOutputType | null
   _max: ProfileMaxAggregateOutputType | null
@@ -164,32 +164,32 @@ export type ProfileWhereInput = {
   OR?: Prisma.ProfileWhereInput[]
   NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
   id?: Prisma.UuidFilter<"Profile"> | string
-  username?: Prisma.StringNullableFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
+  role?: Prisma.EnumRoleFilter<"Profile"> | $Enums.Role
   favorites?: Prisma.FavoriteListRelationFilter
 }
 
 export type ProfileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   favorites?: Prisma.FavoriteOrderByRelationAggregateInput
 }
 
 export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  username?: string
   AND?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
   OR?: Prisma.ProfileWhereInput[]
   NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
+  role?: Prisma.EnumRoleFilter<"Profile"> | $Enums.Role
   favorites?: Prisma.FavoriteListRelationFilter
-}, "id" | "username">
+}, "id">
 
 export type ProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   _count?: Prisma.ProfileCountOrderByAggregateInput
   _max?: Prisma.ProfileMaxOrderByAggregateInput
   _min?: Prisma.ProfileMinOrderByAggregateInput
@@ -200,72 +200,72 @@ export type ProfileScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProfileScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProfileScalarWhereWithAggregatesInput | Prisma.ProfileScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Profile"> | string
-  username?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Profile"> | Date | string
+  role?: Prisma.EnumRoleWithAggregatesFilter<"Profile"> | $Enums.Role
 }
 
 export type ProfileCreateInput = {
   id: string
-  username?: string | null
   createdAt?: Date | string
+  role?: $Enums.Role
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateInput = {
   id: string
-  username?: string | null
   createdAt?: Date | string
+  role?: $Enums.Role
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   favorites?: Prisma.FavoriteUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateManyInput = {
   id: string
-  username?: string | null
   createdAt?: Date | string
+  role?: $Enums.Role
 }
 
 export type ProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
 export type ProfileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
 export type ProfileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
 }
 
 export type ProfileMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
 }
 
 export type ProfileMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
 }
 
 export type ProfileScalarRelationFilter = {
@@ -277,12 +277,12 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type EnumRoleFieldUpdateOperationsInput = {
+  set?: $Enums.Role
 }
 
 export type ProfileCreateNestedOneWithoutFavoritesInput = {
@@ -301,14 +301,14 @@ export type ProfileUpdateOneRequiredWithoutFavoritesNestedInput = {
 
 export type ProfileCreateWithoutFavoritesInput = {
   id: string
-  username?: string | null
   createdAt?: Date | string
+  role?: $Enums.Role
 }
 
 export type ProfileUncheckedCreateWithoutFavoritesInput = {
   id: string
-  username?: string | null
   createdAt?: Date | string
+  role?: $Enums.Role
 }
 
 export type ProfileCreateOrConnectWithoutFavoritesInput = {
@@ -329,14 +329,14 @@ export type ProfileUpdateToOneWithWhereWithoutFavoritesInput = {
 
 export type ProfileUpdateWithoutFavoritesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
 export type ProfileUncheckedUpdateWithoutFavoritesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
 
@@ -372,31 +372,31 @@ export type ProfileCountOutputTypeCountFavoritesArgs<ExtArgs extends runtime.Typ
 
 export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  username?: boolean
   createdAt?: boolean
+  role?: boolean
   favorites?: boolean | Prisma.Profile$favoritesArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
 export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  username?: boolean
   createdAt?: boolean
+  role?: boolean
 }, ExtArgs["result"]["profile"]>
 
 export type ProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  username?: boolean
   createdAt?: boolean
+  role?: boolean
 }, ExtArgs["result"]["profile"]>
 
 export type ProfileSelectScalar = {
   id?: boolean
-  username?: boolean
   createdAt?: boolean
+  role?: boolean
 }
 
-export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "createdAt", ExtArgs["result"]["profile"]>
+export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "role", ExtArgs["result"]["profile"]>
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   favorites?: boolean | Prisma.Profile$favoritesArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
@@ -411,8 +411,8 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    username: string | null
     createdAt: Date
+    role: $Enums.Role
   }, ExtArgs["result"]["profile"]>
   composites: {}
 }
@@ -838,8 +838,8 @@ export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface ProfileFieldRefs {
   readonly id: Prisma.FieldRef<"Profile", 'String'>
-  readonly username: Prisma.FieldRef<"Profile", 'String'>
   readonly createdAt: Prisma.FieldRef<"Profile", 'DateTime'>
+  readonly role: Prisma.FieldRef<"Profile", 'Role'>
 }
     
 

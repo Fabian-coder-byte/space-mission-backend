@@ -6,28 +6,23 @@ import {
   Param,
   Patch,
   Post,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { AgencyService } from './agency.service.js';
 import { CreateAgencyDto } from './dto/CreateAgencyDto.js';
 import { UpdateAgencyDto } from './dto/UpdateAgencyDto.js';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 import { SupabaseAuthGuard } from '../auth/guards/supabase-auth.guard.js';
+import { RolesGuard } from '../auth/guards/roles.guard.js';
+import { Roles } from '../auth/decorators/roles.decorator.js';
 
 @Controller('agencies')
+@UseGuards(SupabaseAuthGuard)
 export class AgencyController {
   constructor(private readonly agencyService: AgencyService) {}
 
-  @Get('test-header')
-  testHeader(@Req() req: any) {
-    return {
-      authorization: req.headers.authorization,
-    };
-  }
-
-  @UseGuards(SupabaseAuthGuard)
   @Post()
+  @UseGuards(RolesGuard)
+  @Roles('ADMIN')
   create(@Body() createAgencyDto: CreateAgencyDto) {
     return this.agencyService.create(createAgencyDto);
   }
@@ -47,14 +42,16 @@ export class AgencyController {
     return this.agencyService.findOne(id);
   }
 
-  @UseGuards(SupabaseAuthGuard)
   @Patch(':id')
+  @UseGuards(RolesGuard)
+  @Roles('ADMIN')
   update(@Param('id') id: string, @Body() updateAgencyDto: UpdateAgencyDto) {
     return this.agencyService.update(id, updateAgencyDto);
   }
 
-  @UseGuards(SupabaseAuthGuard)
   @Delete(':id')
+  @UseGuards(RolesGuard)
+  @Roles('ADMIN')
   remove(@Param('id') id: string) {
     return this.agencyService.remove(id);
   }
