@@ -11,6 +11,7 @@ import { AgencyModule } from './agency/agency.module.js';
   imports: [
     AuthModule,
     SupabaseModule,
+    AgencyModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
