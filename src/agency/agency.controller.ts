@@ -16,11 +16,11 @@ import { RolesGuard } from '../auth/guards/roles.guard.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 
 @Controller('agencies')
-@UseGuards(SupabaseAuthGuard)
 export class AgencyController {
   constructor(private readonly agencyService: AgencyService) {}
 
   @Post()
+  @UseGuards(SupabaseAuthGuard)
   @UseGuards(RolesGuard)
   @Roles('ADMIN')
   create(@Body() createAgencyDto: CreateAgencyDto) {
@@ -43,6 +43,7 @@ export class AgencyController {
   }
 
   @Patch(':id')
+  @UseGuards(SupabaseAuthGuard)
   @UseGuards(RolesGuard)
   @Roles('ADMIN')
   update(@Param('id') id: string, @Body() updateAgencyDto: UpdateAgencyDto) {
@@ -50,6 +51,7 @@ export class AgencyController {
   }
 
   @Delete(':id')
+  @UseGuards(SupabaseAuthGuard)
   @UseGuards(RolesGuard)
   @Roles('ADMIN')
   remove(@Param('id') id: string) {
