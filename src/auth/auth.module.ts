@@ -5,10 +5,12 @@ import { SupabaseModule } from '../supabase/supabase.module.js';
 import { PassportModule } from '@nestjs/passport';
 import { RolesGuard } from './guards/roles.guard.js';
 import { JwtStrategy } from './strategies/jwt.strategy.js';
+import { PrismaModule } from '../prisma/prisma.module.js';
 
 @Module({
   imports: [
     SupabaseModule,
+    PrismaModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   providers: [AuthService, JwtStrategy],

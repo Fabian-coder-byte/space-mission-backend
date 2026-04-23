@@ -20,9 +20,8 @@ export class AgencyController {
   constructor(private readonly agencyService: AgencyService) {}
 
   @Post()
-  @UseGuards(SupabaseAuthGuard)
-  @UseGuards(RolesGuard)
   @Roles('ADMIN')
+  @UseGuards(SupabaseAuthGuard, RolesGuard)
   create(@Body() createAgencyDto: CreateAgencyDto) {
     return this.agencyService.create(createAgencyDto);
   }
@@ -43,9 +42,8 @@ export class AgencyController {
   }
 
   @Patch(':id')
-  @UseGuards(SupabaseAuthGuard)
-  @UseGuards(RolesGuard)
   @Roles('ADMIN')
+  @UseGuards(SupabaseAuthGuard, RolesGuard)
   update(@Param('id') id: string, @Body() updateAgencyDto: UpdateAgencyDto) {
     return this.agencyService.update(id, updateAgencyDto);
   }

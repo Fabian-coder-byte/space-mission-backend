@@ -10,10 +10,14 @@ import { ResetPasswordDto } from './dto/ResetPasswordDto.js';
 import { ResendConfirmationDto } from './dto/ResendConfirmationDto.js';
 import { SupabaseService } from '../supabase/supabase.service.js';
 import { ForgotPasswordDto } from './dto/ForgotPasswordDto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly supabaseService: SupabaseService) {}
+  constructor(
+    private readonly supabaseService: SupabaseService,
+    private readonly prisma: PrismaService,
+  ) {}
 
   async login(loginDto: LoginDto) {
     const supabase = this.supabaseService.getClient();
@@ -131,13 +135,25 @@ export class AuthService {
       );
     }
 
+    const profile = await this.prisma.profile.findUnique({
+      where: { id: data.user.id },
+      select: {
+        id: true,
+        role: true,
+      },
+    });
+
+    if (!profile) {
+      throw new UnauthorizedException('Profilo utente non trovato');
+    }
+
     return {
       user: {
         id: data.user.id,
         email: data.user.email,
         emailConfirmedAt: data.user.email_confirmed_at,
         userMetadata: data.user.user_metadata,
-        role: data.user.role,
+        role: profile.role,
       },
     };
   }

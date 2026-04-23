@@ -6,6 +6,7 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
+  Logger,
   UnauthorizedException,
 } from '@nestjs/common';
 import { createClient } from '@supabase/supabase-js';
@@ -23,7 +24,7 @@ export class SupabaseAuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const authHeader = request.headers.authorization;
-
+    console.log('Auth');
     if (!authHeader?.startsWith('Bearer ')) {
       throw new UnauthorizedException('Token mancante');
     }
@@ -47,6 +48,7 @@ export class SupabaseAuthGuard implements CanActivate {
     if (!profile) {
       throw new UnauthorizedException('Profilo utente non trovato');
     }
+    Logger.debug(profile);
 
     request.user = {
       id: data.user.id,
