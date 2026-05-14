@@ -12,10 +12,6 @@ export class CreateLaunchSiteDto {
   @MaxLength(120)
   name: string;
 
-  @IsString()
-  @MaxLength(140)
-  slug: string;
-
   @IsOptional()
   @IsString()
   @MaxLength(30)

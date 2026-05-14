@@ -16,10 +16,6 @@ export class CreateRocketDto {
   @MaxLength(100)
   name: string;
 
-  @IsString()
-  @MaxLength(120)
-  slug: string;
-
   @IsOptional()
   @IsString()
   @MaxLength(100)

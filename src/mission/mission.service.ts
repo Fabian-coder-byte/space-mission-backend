@@ -18,7 +18,6 @@ export class MissionsService {
       return await this.prisma.mission.create({
         data: {
           name: createMissionDto.name,
-          slug: createMissionDto.slug,
           description: createMissionDto.description,
           missionType: createMissionDto.missionType,
           status: createMissionDto.status,
@@ -81,23 +80,6 @@ export class MissionsService {
     return mission;
   }
 
-  async findBySlug(slug: string) {
-    const mission = await this.prisma.mission.findUnique({
-      where: { slug },
-      include: {
-        agency: true,
-        rocket: true,
-        launchSite: true,
-      },
-    });
-
-    if (!mission) {
-      throw new NotFoundException(`Mission con slug "${slug}" non trovata`);
-    }
-
-    return mission;
-  }
-
   async update(id: string, updateMissionDto: UpdateMissionDto) {
     await this.findOne(id);
 
@@ -106,7 +88,6 @@ export class MissionsService {
         where: { id },
         data: {
           name: updateMissionDto.name,
-          slug: updateMissionDto.slug,
           description: updateMissionDto.description,
           missionType: updateMissionDto.missionType,
           status: updateMissionDto.status,

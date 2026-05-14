@@ -31,11 +31,6 @@ export class LaunchSitesController {
     return this.launchSitesService.findAll();
   }
 
-  @Get('slug/:slug')
-  findBySlug(@Param('slug') slug: string) {
-    return this.launchSitesService.findBySlug(slug);
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.launchSitesService.findOne(id);

@@ -27,7 +27,6 @@ export type AggregateMission = {
 export type MissionMinAggregateOutputType = {
   id: string | null
   name: string | null
-  slug: string | null
   description: string | null
   missionType: $Enums.MissionType | null
   status: $Enums.MissionStatus | null
@@ -49,7 +48,6 @@ export type MissionMinAggregateOutputType = {
 export type MissionMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  slug: string | null
   description: string | null
   missionType: $Enums.MissionType | null
   status: $Enums.MissionStatus | null
@@ -71,7 +69,6 @@ export type MissionMaxAggregateOutputType = {
 export type MissionCountAggregateOutputType = {
   id: number
   name: number
-  slug: number
   description: number
   missionType: number
   status: number
@@ -95,7 +92,6 @@ export type MissionCountAggregateOutputType = {
 export type MissionMinAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   description?: true
   missionType?: true
   status?: true
@@ -117,7 +113,6 @@ export type MissionMinAggregateInputType = {
 export type MissionMaxAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   description?: true
   missionType?: true
   status?: true
@@ -139,7 +134,6 @@ export type MissionMaxAggregateInputType = {
 export type MissionCountAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   description?: true
   missionType?: true
   status?: true
@@ -234,7 +228,6 @@ export type MissionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type MissionGroupByOutputType = {
   id: string
   name: string
-  slug: string
   description: string | null
   missionType: $Enums.MissionType | null
   status: $Enums.MissionStatus
@@ -277,7 +270,6 @@ export type MissionWhereInput = {
   NOT?: Prisma.MissionWhereInput | Prisma.MissionWhereInput[]
   id?: Prisma.StringFilter<"Mission"> | string
   name?: Prisma.StringFilter<"Mission"> | string
-  slug?: Prisma.StringFilter<"Mission"> | string
   description?: Prisma.StringNullableFilter<"Mission"> | string | null
   missionType?: Prisma.EnumMissionTypeNullableFilter<"Mission"> | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFilter<"Mission"> | $Enums.MissionStatus
@@ -302,7 +294,6 @@ export type MissionWhereInput = {
 export type MissionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   missionType?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -326,7 +317,6 @@ export type MissionOrderByWithRelationInput = {
 
 export type MissionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  slug?: string
   name_launchDate?: Prisma.MissionNameLaunchDateCompoundUniqueInput
   AND?: Prisma.MissionWhereInput | Prisma.MissionWhereInput[]
   OR?: Prisma.MissionWhereInput[]
@@ -351,12 +341,11 @@ export type MissionWhereUniqueInput = Prisma.AtLeast<{
   agency?: Prisma.XOR<Prisma.AgencyScalarRelationFilter, Prisma.AgencyWhereInput>
   launchSite?: Prisma.XOR<Prisma.LaunchSiteScalarRelationFilter, Prisma.LaunchSiteWhereInput>
   rocket?: Prisma.XOR<Prisma.RocketScalarRelationFilter, Prisma.RocketWhereInput>
-}, "id" | "slug" | "name_launchDate">
+}, "id" | "name_launchDate">
 
 export type MissionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   missionType?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -384,7 +373,6 @@ export type MissionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.MissionScalarWhereWithAggregatesInput | Prisma.MissionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Mission"> | string
   name?: Prisma.StringWithAggregatesFilter<"Mission"> | string
-  slug?: Prisma.StringWithAggregatesFilter<"Mission"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Mission"> | string | null
   missionType?: Prisma.EnumMissionTypeNullableWithAggregatesFilter<"Mission"> | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusWithAggregatesFilter<"Mission"> | $Enums.MissionStatus
@@ -406,7 +394,6 @@ export type MissionScalarWhereWithAggregatesInput = {
 export type MissionCreateInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -428,7 +415,6 @@ export type MissionCreateInput = {
 export type MissionUncheckedCreateInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -450,7 +436,6 @@ export type MissionUncheckedCreateInput = {
 export type MissionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -472,7 +457,6 @@ export type MissionUpdateInput = {
 export type MissionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -494,7 +478,6 @@ export type MissionUncheckedUpdateInput = {
 export type MissionCreateManyInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -516,7 +499,6 @@ export type MissionCreateManyInput = {
 export type MissionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -535,7 +517,6 @@ export type MissionUpdateManyMutationInput = {
 export type MissionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -572,7 +553,6 @@ export type MissionNameLaunchDateCompoundUniqueInput = {
 export type MissionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
   missionType?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -594,7 +574,6 @@ export type MissionCountOrderByAggregateInput = {
 export type MissionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
   missionType?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -616,7 +595,6 @@ export type MissionMaxOrderByAggregateInput = {
 export type MissionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
   missionType?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -772,7 +750,6 @@ export type EnumMissionStatusFieldUpdateOperationsInput = {
 export type MissionCreateWithoutAgencyInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -793,7 +770,6 @@ export type MissionCreateWithoutAgencyInput = {
 export type MissionUncheckedCreateWithoutAgencyInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -843,7 +819,6 @@ export type MissionScalarWhereInput = {
   NOT?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
   id?: Prisma.StringFilter<"Mission"> | string
   name?: Prisma.StringFilter<"Mission"> | string
-  slug?: Prisma.StringFilter<"Mission"> | string
   description?: Prisma.StringNullableFilter<"Mission"> | string | null
   missionType?: Prisma.EnumMissionTypeNullableFilter<"Mission"> | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFilter<"Mission"> | $Enums.MissionStatus
@@ -865,7 +840,6 @@ export type MissionScalarWhereInput = {
 export type MissionCreateWithoutRocketInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -886,7 +860,6 @@ export type MissionCreateWithoutRocketInput = {
 export type MissionUncheckedCreateWithoutRocketInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -933,7 +906,6 @@ export type MissionUpdateManyWithWhereWithoutRocketInput = {
 export type MissionCreateWithoutLaunchSiteInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -954,7 +926,6 @@ export type MissionCreateWithoutLaunchSiteInput = {
 export type MissionUncheckedCreateWithoutLaunchSiteInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -1001,7 +972,6 @@ export type MissionUpdateManyWithWhereWithoutLaunchSiteInput = {
 export type MissionCreateManyAgencyInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -1022,7 +992,6 @@ export type MissionCreateManyAgencyInput = {
 export type MissionUpdateWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1043,7 +1012,6 @@ export type MissionUpdateWithoutAgencyInput = {
 export type MissionUncheckedUpdateWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1064,7 +1032,6 @@ export type MissionUncheckedUpdateWithoutAgencyInput = {
 export type MissionUncheckedUpdateManyWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1085,7 +1052,6 @@ export type MissionUncheckedUpdateManyWithoutAgencyInput = {
 export type MissionCreateManyRocketInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -1106,7 +1072,6 @@ export type MissionCreateManyRocketInput = {
 export type MissionUpdateWithoutRocketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1127,7 +1092,6 @@ export type MissionUpdateWithoutRocketInput = {
 export type MissionUncheckedUpdateWithoutRocketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1148,7 +1112,6 @@ export type MissionUncheckedUpdateWithoutRocketInput = {
 export type MissionUncheckedUpdateManyWithoutRocketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1169,7 +1132,6 @@ export type MissionUncheckedUpdateManyWithoutRocketInput = {
 export type MissionCreateManyLaunchSiteInput = {
   id?: string
   name: string
-  slug: string
   description?: string | null
   missionType?: $Enums.MissionType | null
   status?: $Enums.MissionStatus
@@ -1190,7 +1152,6 @@ export type MissionCreateManyLaunchSiteInput = {
 export type MissionUpdateWithoutLaunchSiteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1211,7 +1172,6 @@ export type MissionUpdateWithoutLaunchSiteInput = {
 export type MissionUncheckedUpdateWithoutLaunchSiteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1232,7 +1192,6 @@ export type MissionUncheckedUpdateWithoutLaunchSiteInput = {
 export type MissionUncheckedUpdateManyWithoutLaunchSiteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   missionType?: Prisma.NullableEnumMissionTypeFieldUpdateOperationsInput | $Enums.MissionType | null
   status?: Prisma.EnumMissionStatusFieldUpdateOperationsInput | $Enums.MissionStatus
@@ -1255,7 +1214,6 @@ export type MissionUncheckedUpdateManyWithoutLaunchSiteInput = {
 export type MissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   description?: boolean
   missionType?: boolean
   status?: boolean
@@ -1280,7 +1238,6 @@ export type MissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type MissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   description?: boolean
   missionType?: boolean
   status?: boolean
@@ -1305,7 +1262,6 @@ export type MissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type MissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   description?: boolean
   missionType?: boolean
   status?: boolean
@@ -1330,7 +1286,6 @@ export type MissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type MissionSelectScalar = {
   id?: boolean
   name?: boolean
-  slug?: boolean
   description?: boolean
   missionType?: boolean
   status?: boolean
@@ -1349,7 +1304,7 @@ export type MissionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type MissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "description" | "missionType" | "status" | "launchDate" | "windowStart" | "windowEnd" | "destination" | "orbit" | "isCrewed" | "imageUrl" | "detailsUrl" | "agencyId" | "rocketId" | "launchSiteId" | "createdAt" | "updatedAt", ExtArgs["result"]["mission"]>
+export type MissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "missionType" | "status" | "launchDate" | "windowStart" | "windowEnd" | "destination" | "orbit" | "isCrewed" | "imageUrl" | "detailsUrl" | "agencyId" | "rocketId" | "launchSiteId" | "createdAt" | "updatedAt", ExtArgs["result"]["mission"]>
 export type MissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agency?: boolean | Prisma.AgencyDefaultArgs<ExtArgs>
   launchSite?: boolean | Prisma.LaunchSiteDefaultArgs<ExtArgs>
@@ -1376,7 +1331,6 @@ export type $MissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    slug: string
     description: string | null
     missionType: $Enums.MissionType | null
     status: $Enums.MissionStatus
@@ -1821,7 +1775,6 @@ export interface Prisma__MissionClient<T, Null = never, ExtArgs extends runtime.
 export interface MissionFieldRefs {
   readonly id: Prisma.FieldRef<"Mission", 'String'>
   readonly name: Prisma.FieldRef<"Mission", 'String'>
-  readonly slug: Prisma.FieldRef<"Mission", 'String'>
   readonly description: Prisma.FieldRef<"Mission", 'String'>
   readonly missionType: Prisma.FieldRef<"Mission", 'MissionType'>
   readonly status: Prisma.FieldRef<"Mission", 'MissionStatus'>

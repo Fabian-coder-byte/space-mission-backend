@@ -32,11 +32,6 @@ export class RocketsController {
     return this.rocketsService.findAll();
   }
 
-  @Get('slug/:slug')
-  findBySlug(@Param('slug') slug: string) {
-    return this.rocketsService.findBySlug(slug);
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.rocketsService.findOne(id);

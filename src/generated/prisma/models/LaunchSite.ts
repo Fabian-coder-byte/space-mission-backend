@@ -39,7 +39,6 @@ export type LaunchSiteSumAggregateOutputType = {
 export type LaunchSiteMinAggregateOutputType = {
   id: string | null
   name: string | null
-  slug: string | null
   code: string | null
   locationName: string | null
   country: string | null
@@ -55,7 +54,6 @@ export type LaunchSiteMinAggregateOutputType = {
 export type LaunchSiteMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  slug: string | null
   code: string | null
   locationName: string | null
   country: string | null
@@ -71,7 +69,6 @@ export type LaunchSiteMaxAggregateOutputType = {
 export type LaunchSiteCountAggregateOutputType = {
   id: number
   name: number
-  slug: number
   code: number
   locationName: number
   country: number
@@ -99,7 +96,6 @@ export type LaunchSiteSumAggregateInputType = {
 export type LaunchSiteMinAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   code?: true
   locationName?: true
   country?: true
@@ -115,7 +111,6 @@ export type LaunchSiteMinAggregateInputType = {
 export type LaunchSiteMaxAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   code?: true
   locationName?: true
   country?: true
@@ -131,7 +126,6 @@ export type LaunchSiteMaxAggregateInputType = {
 export type LaunchSiteCountAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   code?: true
   locationName?: true
   country?: true
@@ -234,7 +228,6 @@ export type LaunchSiteGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type LaunchSiteGroupByOutputType = {
   id: string
   name: string
-  slug: string
   code: string | null
   locationName: string | null
   country: string | null
@@ -273,7 +266,6 @@ export type LaunchSiteWhereInput = {
   NOT?: Prisma.LaunchSiteWhereInput | Prisma.LaunchSiteWhereInput[]
   id?: Prisma.StringFilter<"LaunchSite"> | string
   name?: Prisma.StringFilter<"LaunchSite"> | string
-  slug?: Prisma.StringFilter<"LaunchSite"> | string
   code?: Prisma.StringNullableFilter<"LaunchSite"> | string | null
   locationName?: Prisma.StringNullableFilter<"LaunchSite"> | string | null
   country?: Prisma.StringNullableFilter<"LaunchSite"> | string | null
@@ -290,7 +282,6 @@ export type LaunchSiteWhereInput = {
 export type LaunchSiteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   code?: Prisma.SortOrderInput | Prisma.SortOrder
   locationName?: Prisma.SortOrderInput | Prisma.SortOrder
   country?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -307,7 +298,6 @@ export type LaunchSiteOrderByWithRelationInput = {
 export type LaunchSiteWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   name?: string
-  slug?: string
   code?: string
   AND?: Prisma.LaunchSiteWhereInput | Prisma.LaunchSiteWhereInput[]
   OR?: Prisma.LaunchSiteWhereInput[]
@@ -322,12 +312,11 @@ export type LaunchSiteWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"LaunchSite"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LaunchSite"> | Date | string
   missions?: Prisma.MissionListRelationFilter
-}, "id" | "name" | "slug" | "code">
+}, "id" | "name" | "code">
 
 export type LaunchSiteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   code?: Prisma.SortOrderInput | Prisma.SortOrder
   locationName?: Prisma.SortOrderInput | Prisma.SortOrder
   country?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -351,7 +340,6 @@ export type LaunchSiteScalarWhereWithAggregatesInput = {
   NOT?: Prisma.LaunchSiteScalarWhereWithAggregatesInput | Prisma.LaunchSiteScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"LaunchSite"> | string
   name?: Prisma.StringWithAggregatesFilter<"LaunchSite"> | string
-  slug?: Prisma.StringWithAggregatesFilter<"LaunchSite"> | string
   code?: Prisma.StringNullableWithAggregatesFilter<"LaunchSite"> | string | null
   locationName?: Prisma.StringNullableWithAggregatesFilter<"LaunchSite"> | string | null
   country?: Prisma.StringNullableWithAggregatesFilter<"LaunchSite"> | string | null
@@ -367,7 +355,6 @@ export type LaunchSiteScalarWhereWithAggregatesInput = {
 export type LaunchSiteCreateInput = {
   id?: string
   name: string
-  slug: string
   code?: string | null
   locationName?: string | null
   country?: string | null
@@ -384,7 +371,6 @@ export type LaunchSiteCreateInput = {
 export type LaunchSiteUncheckedCreateInput = {
   id?: string
   name: string
-  slug: string
   code?: string | null
   locationName?: string | null
   country?: string | null
@@ -401,7 +387,6 @@ export type LaunchSiteUncheckedCreateInput = {
 export type LaunchSiteUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   locationName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -418,7 +403,6 @@ export type LaunchSiteUpdateInput = {
 export type LaunchSiteUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   locationName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -435,7 +419,6 @@ export type LaunchSiteUncheckedUpdateInput = {
 export type LaunchSiteCreateManyInput = {
   id?: string
   name: string
-  slug: string
   code?: string | null
   locationName?: string | null
   country?: string | null
@@ -451,7 +434,6 @@ export type LaunchSiteCreateManyInput = {
 export type LaunchSiteUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   locationName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -467,7 +449,6 @@ export type LaunchSiteUpdateManyMutationInput = {
 export type LaunchSiteUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   locationName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -483,7 +464,6 @@ export type LaunchSiteUncheckedUpdateManyInput = {
 export type LaunchSiteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   code?: Prisma.SortOrder
   locationName?: Prisma.SortOrder
   country?: Prisma.SortOrder
@@ -504,7 +484,6 @@ export type LaunchSiteAvgOrderByAggregateInput = {
 export type LaunchSiteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   code?: Prisma.SortOrder
   locationName?: Prisma.SortOrder
   country?: Prisma.SortOrder
@@ -520,7 +499,6 @@ export type LaunchSiteMaxOrderByAggregateInput = {
 export type LaunchSiteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   code?: Prisma.SortOrder
   locationName?: Prisma.SortOrder
   country?: Prisma.SortOrder
@@ -560,7 +538,6 @@ export type LaunchSiteUpdateOneRequiredWithoutMissionsNestedInput = {
 export type LaunchSiteCreateWithoutMissionsInput = {
   id?: string
   name: string
-  slug: string
   code?: string | null
   locationName?: string | null
   country?: string | null
@@ -576,7 +553,6 @@ export type LaunchSiteCreateWithoutMissionsInput = {
 export type LaunchSiteUncheckedCreateWithoutMissionsInput = {
   id?: string
   name: string
-  slug: string
   code?: string | null
   locationName?: string | null
   country?: string | null
@@ -608,7 +584,6 @@ export type LaunchSiteUpdateToOneWithWhereWithoutMissionsInput = {
 export type LaunchSiteUpdateWithoutMissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   locationName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -624,7 +599,6 @@ export type LaunchSiteUpdateWithoutMissionsInput = {
 export type LaunchSiteUncheckedUpdateWithoutMissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   locationName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -671,7 +645,6 @@ export type LaunchSiteCountOutputTypeCountMissionsArgs<ExtArgs extends runtime.T
 export type LaunchSiteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   code?: boolean
   locationName?: boolean
   country?: boolean
@@ -689,7 +662,6 @@ export type LaunchSiteSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type LaunchSiteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   code?: boolean
   locationName?: boolean
   country?: boolean
@@ -705,7 +677,6 @@ export type LaunchSiteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type LaunchSiteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   code?: boolean
   locationName?: boolean
   country?: boolean
@@ -721,7 +692,6 @@ export type LaunchSiteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type LaunchSiteSelectScalar = {
   id?: boolean
   name?: boolean
-  slug?: boolean
   code?: boolean
   locationName?: boolean
   country?: boolean
@@ -734,7 +704,7 @@ export type LaunchSiteSelectScalar = {
   updatedAt?: boolean
 }
 
-export type LaunchSiteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "code" | "locationName" | "country" | "region" | "latitude" | "longitude" | "description" | "imageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["launchSite"]>
+export type LaunchSiteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "locationName" | "country" | "region" | "latitude" | "longitude" | "description" | "imageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["launchSite"]>
 export type LaunchSiteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   missions?: boolean | Prisma.LaunchSite$missionsArgs<ExtArgs>
   _count?: boolean | Prisma.LaunchSiteCountOutputTypeDefaultArgs<ExtArgs>
@@ -750,7 +720,6 @@ export type $LaunchSitePayload<ExtArgs extends runtime.Types.Extensions.Internal
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    slug: string
     code: string | null
     locationName: string | null
     country: string | null
@@ -1187,7 +1156,6 @@ export interface Prisma__LaunchSiteClient<T, Null = never, ExtArgs extends runti
 export interface LaunchSiteFieldRefs {
   readonly id: Prisma.FieldRef<"LaunchSite", 'String'>
   readonly name: Prisma.FieldRef<"LaunchSite", 'String'>
-  readonly slug: Prisma.FieldRef<"LaunchSite", 'String'>
   readonly code: Prisma.FieldRef<"LaunchSite", 'String'>
   readonly locationName: Prisma.FieldRef<"LaunchSite", 'String'>
   readonly country: Prisma.FieldRef<"LaunchSite", 'String'>

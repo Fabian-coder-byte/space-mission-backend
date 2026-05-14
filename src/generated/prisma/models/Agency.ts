@@ -37,7 +37,6 @@ export type AgencySumAggregateOutputType = {
 export type AgencyMinAggregateOutputType = {
   id: string | null
   name: string | null
-  slug: string | null
   country: string | null
   type: $Enums.AgencyType | null
   description: string | null
@@ -51,7 +50,6 @@ export type AgencyMinAggregateOutputType = {
 export type AgencyMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  slug: string | null
   country: string | null
   type: $Enums.AgencyType | null
   description: string | null
@@ -65,7 +63,6 @@ export type AgencyMaxAggregateOutputType = {
 export type AgencyCountAggregateOutputType = {
   id: number
   name: number
-  slug: number
   country: number
   type: number
   description: number
@@ -89,7 +86,6 @@ export type AgencySumAggregateInputType = {
 export type AgencyMinAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   country?: true
   type?: true
   description?: true
@@ -103,7 +99,6 @@ export type AgencyMinAggregateInputType = {
 export type AgencyMaxAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   country?: true
   type?: true
   description?: true
@@ -117,7 +112,6 @@ export type AgencyMaxAggregateInputType = {
 export type AgencyCountAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   country?: true
   type?: true
   description?: true
@@ -218,7 +212,6 @@ export type AgencyGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type AgencyGroupByOutputType = {
   id: string
   name: string
-  slug: string
   country: string | null
   type: $Enums.AgencyType | null
   description: string | null
@@ -255,7 +248,6 @@ export type AgencyWhereInput = {
   NOT?: Prisma.AgencyWhereInput | Prisma.AgencyWhereInput[]
   id?: Prisma.StringFilter<"Agency"> | string
   name?: Prisma.StringFilter<"Agency"> | string
-  slug?: Prisma.StringFilter<"Agency"> | string
   country?: Prisma.StringNullableFilter<"Agency"> | string | null
   type?: Prisma.EnumAgencyTypeNullableFilter<"Agency"> | $Enums.AgencyType | null
   description?: Prisma.StringNullableFilter<"Agency"> | string | null
@@ -271,7 +263,6 @@ export type AgencyWhereInput = {
 export type AgencyOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   country?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -287,7 +278,6 @@ export type AgencyOrderByWithRelationInput = {
 export type AgencyWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   name?: string
-  slug?: string
   AND?: Prisma.AgencyWhereInput | Prisma.AgencyWhereInput[]
   OR?: Prisma.AgencyWhereInput[]
   NOT?: Prisma.AgencyWhereInput | Prisma.AgencyWhereInput[]
@@ -301,12 +291,11 @@ export type AgencyWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Agency"> | Date | string
   missions?: Prisma.MissionListRelationFilter
   rockets?: Prisma.RocketListRelationFilter
-}, "id" | "name" | "slug">
+}, "id" | "name">
 
 export type AgencyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   country?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -328,7 +317,6 @@ export type AgencyScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AgencyScalarWhereWithAggregatesInput | Prisma.AgencyScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Agency"> | string
   name?: Prisma.StringWithAggregatesFilter<"Agency"> | string
-  slug?: Prisma.StringWithAggregatesFilter<"Agency"> | string
   country?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
   type?: Prisma.EnumAgencyTypeNullableWithAggregatesFilter<"Agency"> | $Enums.AgencyType | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Agency"> | string | null
@@ -342,7 +330,6 @@ export type AgencyScalarWhereWithAggregatesInput = {
 export type AgencyCreateInput = {
   id?: string
   name: string
-  slug: string
   country?: string | null
   type?: $Enums.AgencyType | null
   description?: string | null
@@ -358,7 +345,6 @@ export type AgencyCreateInput = {
 export type AgencyUncheckedCreateInput = {
   id?: string
   name: string
-  slug: string
   country?: string | null
   type?: $Enums.AgencyType | null
   description?: string | null
@@ -374,7 +360,6 @@ export type AgencyUncheckedCreateInput = {
 export type AgencyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableEnumAgencyTypeFieldUpdateOperationsInput | $Enums.AgencyType | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -390,7 +375,6 @@ export type AgencyUpdateInput = {
 export type AgencyUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableEnumAgencyTypeFieldUpdateOperationsInput | $Enums.AgencyType | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -406,7 +390,6 @@ export type AgencyUncheckedUpdateInput = {
 export type AgencyCreateManyInput = {
   id?: string
   name: string
-  slug: string
   country?: string | null
   type?: $Enums.AgencyType | null
   description?: string | null
@@ -420,7 +403,6 @@ export type AgencyCreateManyInput = {
 export type AgencyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableEnumAgencyTypeFieldUpdateOperationsInput | $Enums.AgencyType | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -434,7 +416,6 @@ export type AgencyUpdateManyMutationInput = {
 export type AgencyUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableEnumAgencyTypeFieldUpdateOperationsInput | $Enums.AgencyType | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -448,7 +429,6 @@ export type AgencyUncheckedUpdateManyInput = {
 export type AgencyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   country?: Prisma.SortOrder
   type?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -466,7 +446,6 @@ export type AgencyAvgOrderByAggregateInput = {
 export type AgencyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   country?: Prisma.SortOrder
   type?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -480,7 +459,6 @@ export type AgencyMaxOrderByAggregateInput = {
 export type AgencyMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   country?: Prisma.SortOrder
   type?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -550,7 +528,6 @@ export type AgencyUpdateOneRequiredWithoutMissionsNestedInput = {
 export type AgencyCreateWithoutRocketsInput = {
   id?: string
   name: string
-  slug: string
   country?: string | null
   type?: $Enums.AgencyType | null
   description?: string | null
@@ -565,7 +542,6 @@ export type AgencyCreateWithoutRocketsInput = {
 export type AgencyUncheckedCreateWithoutRocketsInput = {
   id?: string
   name: string
-  slug: string
   country?: string | null
   type?: $Enums.AgencyType | null
   description?: string | null
@@ -596,7 +572,6 @@ export type AgencyUpdateToOneWithWhereWithoutRocketsInput = {
 export type AgencyUpdateWithoutRocketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableEnumAgencyTypeFieldUpdateOperationsInput | $Enums.AgencyType | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -611,7 +586,6 @@ export type AgencyUpdateWithoutRocketsInput = {
 export type AgencyUncheckedUpdateWithoutRocketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableEnumAgencyTypeFieldUpdateOperationsInput | $Enums.AgencyType | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -626,7 +600,6 @@ export type AgencyUncheckedUpdateWithoutRocketsInput = {
 export type AgencyCreateWithoutMissionsInput = {
   id?: string
   name: string
-  slug: string
   country?: string | null
   type?: $Enums.AgencyType | null
   description?: string | null
@@ -641,7 +614,6 @@ export type AgencyCreateWithoutMissionsInput = {
 export type AgencyUncheckedCreateWithoutMissionsInput = {
   id?: string
   name: string
-  slug: string
   country?: string | null
   type?: $Enums.AgencyType | null
   description?: string | null
@@ -672,7 +644,6 @@ export type AgencyUpdateToOneWithWhereWithoutMissionsInput = {
 export type AgencyUpdateWithoutMissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableEnumAgencyTypeFieldUpdateOperationsInput | $Enums.AgencyType | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -687,7 +658,6 @@ export type AgencyUpdateWithoutMissionsInput = {
 export type AgencyUncheckedUpdateWithoutMissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableEnumAgencyTypeFieldUpdateOperationsInput | $Enums.AgencyType | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -742,7 +712,6 @@ export type AgencyCountOutputTypeCountRocketsArgs<ExtArgs extends runtime.Types.
 export type AgencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   country?: boolean
   type?: boolean
   description?: boolean
@@ -759,7 +728,6 @@ export type AgencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type AgencySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   country?: boolean
   type?: boolean
   description?: boolean
@@ -773,7 +741,6 @@ export type AgencySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type AgencySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   country?: boolean
   type?: boolean
   description?: boolean
@@ -787,7 +754,6 @@ export type AgencySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type AgencySelectScalar = {
   id?: boolean
   name?: boolean
-  slug?: boolean
   country?: boolean
   type?: boolean
   description?: boolean
@@ -798,7 +764,7 @@ export type AgencySelectScalar = {
   updatedAt?: boolean
 }
 
-export type AgencyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "country" | "type" | "description" | "website" | "logoUrl" | "foundedYear" | "createdAt" | "updatedAt", ExtArgs["result"]["agency"]>
+export type AgencyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "country" | "type" | "description" | "website" | "logoUrl" | "foundedYear" | "createdAt" | "updatedAt", ExtArgs["result"]["agency"]>
 export type AgencyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   missions?: boolean | Prisma.Agency$missionsArgs<ExtArgs>
   rockets?: boolean | Prisma.Agency$rocketsArgs<ExtArgs>
@@ -816,7 +782,6 @@ export type $AgencyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    slug: string
     country: string | null
     type: $Enums.AgencyType | null
     description: string | null
@@ -1252,7 +1217,6 @@ export interface Prisma__AgencyClient<T, Null = never, ExtArgs extends runtime.T
 export interface AgencyFieldRefs {
   readonly id: Prisma.FieldRef<"Agency", 'String'>
   readonly name: Prisma.FieldRef<"Agency", 'String'>
-  readonly slug: Prisma.FieldRef<"Agency", 'String'>
   readonly country: Prisma.FieldRef<"Agency", 'String'>
   readonly type: Prisma.FieldRef<"Agency", 'AgencyType'>
   readonly description: Prisma.FieldRef<"Agency", 'String'>

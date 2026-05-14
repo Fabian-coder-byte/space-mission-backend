@@ -15,10 +15,6 @@ export class CreateAgencyDto {
   @MinLength(2)
   name: string;
 
-  @IsString()
-  @MinLength(2)
-  slug: string;
-
   @IsOptional()
   @IsString()
   country?: string;

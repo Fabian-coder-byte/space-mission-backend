@@ -45,7 +45,6 @@ export type RocketSumAggregateOutputType = {
 export type RocketMinAggregateOutputType = {
   id: string | null
   name: string | null
-  slug: string | null
   manufacturer: string | null
   description: string | null
   reusable: boolean | null
@@ -65,7 +64,6 @@ export type RocketMinAggregateOutputType = {
 export type RocketMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  slug: string | null
   manufacturer: string | null
   description: string | null
   reusable: boolean | null
@@ -85,7 +83,6 @@ export type RocketMaxAggregateOutputType = {
 export type RocketCountAggregateOutputType = {
   id: number
   name: number
-  slug: number
   manufacturer: number
   description: number
   reusable: number
@@ -123,7 +120,6 @@ export type RocketSumAggregateInputType = {
 export type RocketMinAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   manufacturer?: true
   description?: true
   reusable?: true
@@ -143,7 +139,6 @@ export type RocketMinAggregateInputType = {
 export type RocketMaxAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   manufacturer?: true
   description?: true
   reusable?: true
@@ -163,7 +158,6 @@ export type RocketMaxAggregateInputType = {
 export type RocketCountAggregateInputType = {
   id?: true
   name?: true
-  slug?: true
   manufacturer?: true
   description?: true
   reusable?: true
@@ -270,7 +264,6 @@ export type RocketGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type RocketGroupByOutputType = {
   id: string
   name: string
-  slug: string
   manufacturer: string | null
   description: string | null
   reusable: boolean
@@ -313,7 +306,6 @@ export type RocketWhereInput = {
   NOT?: Prisma.RocketWhereInput | Prisma.RocketWhereInput[]
   id?: Prisma.StringFilter<"Rocket"> | string
   name?: Prisma.StringFilter<"Rocket"> | string
-  slug?: Prisma.StringFilter<"Rocket"> | string
   manufacturer?: Prisma.StringNullableFilter<"Rocket"> | string | null
   description?: Prisma.StringNullableFilter<"Rocket"> | string | null
   reusable?: Prisma.BoolFilter<"Rocket"> | boolean
@@ -335,7 +327,6 @@ export type RocketWhereInput = {
 export type RocketOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   reusable?: Prisma.SortOrder
@@ -357,7 +348,6 @@ export type RocketOrderByWithRelationInput = {
 export type RocketWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   name?: string
-  slug?: string
   AND?: Prisma.RocketWhereInput | Prisma.RocketWhereInput[]
   OR?: Prisma.RocketWhereInput[]
   NOT?: Prisma.RocketWhereInput | Prisma.RocketWhereInput[]
@@ -377,12 +367,11 @@ export type RocketWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Rocket"> | Date | string
   missions?: Prisma.MissionListRelationFilter
   agency?: Prisma.XOR<Prisma.AgencyNullableScalarRelationFilter, Prisma.AgencyWhereInput> | null
-}, "id" | "name" | "slug">
+}, "id" | "name">
 
 export type RocketOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   reusable?: Prisma.SortOrder
@@ -410,7 +399,6 @@ export type RocketScalarWhereWithAggregatesInput = {
   NOT?: Prisma.RocketScalarWhereWithAggregatesInput | Prisma.RocketScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Rocket"> | string
   name?: Prisma.StringWithAggregatesFilter<"Rocket"> | string
-  slug?: Prisma.StringWithAggregatesFilter<"Rocket"> | string
   manufacturer?: Prisma.StringNullableWithAggregatesFilter<"Rocket"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Rocket"> | string | null
   reusable?: Prisma.BoolWithAggregatesFilter<"Rocket"> | boolean
@@ -430,7 +418,6 @@ export type RocketScalarWhereWithAggregatesInput = {
 export type RocketCreateInput = {
   id?: string
   name: string
-  slug: string
   manufacturer?: string | null
   description?: string | null
   reusable?: boolean
@@ -451,7 +438,6 @@ export type RocketCreateInput = {
 export type RocketUncheckedCreateInput = {
   id?: string
   name: string
-  slug: string
   manufacturer?: string | null
   description?: string | null
   reusable?: boolean
@@ -472,7 +458,6 @@ export type RocketUncheckedCreateInput = {
 export type RocketUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -493,7 +478,6 @@ export type RocketUpdateInput = {
 export type RocketUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -514,7 +498,6 @@ export type RocketUncheckedUpdateInput = {
 export type RocketCreateManyInput = {
   id?: string
   name: string
-  slug: string
   manufacturer?: string | null
   description?: string | null
   reusable?: boolean
@@ -534,7 +517,6 @@ export type RocketCreateManyInput = {
 export type RocketUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -553,7 +535,6 @@ export type RocketUpdateManyMutationInput = {
 export type RocketUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -583,7 +564,6 @@ export type RocketOrderByRelationAggregateInput = {
 export type RocketCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrder
   description?: Prisma.SortOrder
   reusable?: Prisma.SortOrder
@@ -611,7 +591,6 @@ export type RocketAvgOrderByAggregateInput = {
 export type RocketMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrder
   description?: Prisma.SortOrder
   reusable?: Prisma.SortOrder
@@ -631,7 +610,6 @@ export type RocketMaxOrderByAggregateInput = {
 export type RocketMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrder
   description?: Prisma.SortOrder
   reusable?: Prisma.SortOrder
@@ -736,7 +714,6 @@ export type RocketUpdateOneRequiredWithoutMissionsNestedInput = {
 export type RocketCreateWithoutAgencyInput = {
   id?: string
   name: string
-  slug: string
   manufacturer?: string | null
   description?: string | null
   reusable?: boolean
@@ -756,7 +733,6 @@ export type RocketCreateWithoutAgencyInput = {
 export type RocketUncheckedCreateWithoutAgencyInput = {
   id?: string
   name: string
-  slug: string
   manufacturer?: string | null
   description?: string | null
   reusable?: boolean
@@ -805,7 +781,6 @@ export type RocketScalarWhereInput = {
   NOT?: Prisma.RocketScalarWhereInput | Prisma.RocketScalarWhereInput[]
   id?: Prisma.StringFilter<"Rocket"> | string
   name?: Prisma.StringFilter<"Rocket"> | string
-  slug?: Prisma.StringFilter<"Rocket"> | string
   manufacturer?: Prisma.StringNullableFilter<"Rocket"> | string | null
   description?: Prisma.StringNullableFilter<"Rocket"> | string | null
   reusable?: Prisma.BoolFilter<"Rocket"> | boolean
@@ -825,7 +800,6 @@ export type RocketScalarWhereInput = {
 export type RocketCreateWithoutMissionsInput = {
   id?: string
   name: string
-  slug: string
   manufacturer?: string | null
   description?: string | null
   reusable?: boolean
@@ -845,7 +819,6 @@ export type RocketCreateWithoutMissionsInput = {
 export type RocketUncheckedCreateWithoutMissionsInput = {
   id?: string
   name: string
-  slug: string
   manufacturer?: string | null
   description?: string | null
   reusable?: boolean
@@ -881,7 +854,6 @@ export type RocketUpdateToOneWithWhereWithoutMissionsInput = {
 export type RocketUpdateWithoutMissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -901,7 +873,6 @@ export type RocketUpdateWithoutMissionsInput = {
 export type RocketUncheckedUpdateWithoutMissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -921,7 +892,6 @@ export type RocketUncheckedUpdateWithoutMissionsInput = {
 export type RocketCreateManyAgencyInput = {
   id?: string
   name: string
-  slug: string
   manufacturer?: string | null
   description?: string | null
   reusable?: boolean
@@ -940,7 +910,6 @@ export type RocketCreateManyAgencyInput = {
 export type RocketUpdateWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -960,7 +929,6 @@ export type RocketUpdateWithoutAgencyInput = {
 export type RocketUncheckedUpdateWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -980,7 +948,6 @@ export type RocketUncheckedUpdateWithoutAgencyInput = {
 export type RocketUncheckedUpdateManyWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reusable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1030,7 +997,6 @@ export type RocketCountOutputTypeCountMissionsArgs<ExtArgs extends runtime.Types
 export type RocketSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   manufacturer?: boolean
   description?: boolean
   reusable?: boolean
@@ -1053,7 +1019,6 @@ export type RocketSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type RocketSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   manufacturer?: boolean
   description?: boolean
   reusable?: boolean
@@ -1074,7 +1039,6 @@ export type RocketSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type RocketSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  slug?: boolean
   manufacturer?: boolean
   description?: boolean
   reusable?: boolean
@@ -1095,7 +1059,6 @@ export type RocketSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type RocketSelectScalar = {
   id?: boolean
   name?: boolean
-  slug?: boolean
   manufacturer?: boolean
   description?: boolean
   reusable?: boolean
@@ -1112,7 +1075,7 @@ export type RocketSelectScalar = {
   updatedAt?: boolean
 }
 
-export type RocketOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "manufacturer" | "description" | "reusable" | "status" | "heightMeters" | "diameterMeters" | "massKg" | "payloadToLeoKg" | "payloadToGtoKg" | "firstFlightDate" | "imageUrl" | "agencyId" | "createdAt" | "updatedAt", ExtArgs["result"]["rocket"]>
+export type RocketOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "manufacturer" | "description" | "reusable" | "status" | "heightMeters" | "diameterMeters" | "massKg" | "payloadToLeoKg" | "payloadToGtoKg" | "firstFlightDate" | "imageUrl" | "agencyId" | "createdAt" | "updatedAt", ExtArgs["result"]["rocket"]>
 export type RocketInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   missions?: boolean | Prisma.Rocket$missionsArgs<ExtArgs>
   agency?: boolean | Prisma.Rocket$agencyArgs<ExtArgs>
@@ -1134,7 +1097,6 @@ export type $RocketPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    slug: string
     manufacturer: string | null
     description: string | null
     reusable: boolean
@@ -1576,7 +1538,6 @@ export interface Prisma__RocketClient<T, Null = never, ExtArgs extends runtime.T
 export interface RocketFieldRefs {
   readonly id: Prisma.FieldRef<"Rocket", 'String'>
   readonly name: Prisma.FieldRef<"Rocket", 'String'>
-  readonly slug: Prisma.FieldRef<"Rocket", 'String'>
   readonly manufacturer: Prisma.FieldRef<"Rocket", 'String'>
   readonly description: Prisma.FieldRef<"Rocket", 'String'>
   readonly reusable: Prisma.FieldRef<"Rocket", 'Boolean'>

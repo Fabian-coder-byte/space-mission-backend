@@ -17,7 +17,6 @@ export class LaunchSitesService {
       return await this.prisma.launchSite.create({
         data: {
           name: createLaunchSiteDto.name,
-          slug: createLaunchSiteDto.slug,
           code: createLaunchSiteDto.code,
           locationName: createLaunchSiteDto.locationName,
           country: createLaunchSiteDto.country,
@@ -62,21 +61,6 @@ export class LaunchSitesService {
     return launchSite;
   }
 
-  async findBySlug(slug: string) {
-    const launchSite = await this.prisma.launchSite.findUnique({
-      where: { slug },
-      include: {
-        missions: true,
-      },
-    });
-
-    if (!launchSite) {
-      throw new NotFoundException(`LaunchSite con slug "${slug}" non trovato`);
-    }
-
-    return launchSite;
-  }
-
   async update(id: string, updateLaunchSiteDto: UpdateLaunchSiteDto) {
     await this.findOne(id);
 
@@ -85,7 +69,6 @@ export class LaunchSitesService {
         where: { id },
         data: {
           name: updateLaunchSiteDto.name,
-          slug: updateLaunchSiteDto.slug,
           code: updateLaunchSiteDto.code,
           locationName: updateLaunchSiteDto.locationName,
           country: updateLaunchSiteDto.country,

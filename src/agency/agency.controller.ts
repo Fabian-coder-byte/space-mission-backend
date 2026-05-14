@@ -31,11 +31,6 @@ export class AgencyController {
     return this.agencyService.findAll();
   }
 
-  @Get('slug/:slug')
-  findBySlug(@Param('slug') slug: string) {
-    return this.agencyService.findBySlug(slug);
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.agencyService.findOne(id);
@@ -49,8 +44,7 @@ export class AgencyController {
   }
 
   @Delete(':id')
-  @UseGuards(SupabaseAuthGuard)
-  @UseGuards(RolesGuard)
+  @UseGuards(SupabaseAuthGuard, RolesGuard)
   @Roles('ADMIN')
   remove(@Param('id') id: string) {
     return this.agencyService.remove(id);

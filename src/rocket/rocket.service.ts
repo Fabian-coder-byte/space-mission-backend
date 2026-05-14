@@ -17,7 +17,6 @@ export class RocketsService {
       return await this.prisma.rocket.create({
         data: {
           name: createRocketDto.name,
-          slug: createRocketDto.slug,
           manufacturer: createRocketDto.manufacturer,
           description: createRocketDto.description,
           reusable: createRocketDto.reusable ?? false,
@@ -71,22 +70,6 @@ export class RocketsService {
     return rocket;
   }
 
-  async findBySlug(slug: string) {
-    const rocket = await this.prisma.rocket.findUnique({
-      where: { slug },
-      include: {
-        agency: true,
-        missions: true,
-      },
-    });
-
-    if (!rocket) {
-      throw new NotFoundException(`Rocket con slug "${slug}" non trovata`);
-    }
-
-    return rocket;
-  }
-
   async update(id: string, updateRocketDto: UpdateRocketDto) {
     await this.findOne(id);
 
@@ -95,7 +78,6 @@ export class RocketsService {
         where: { id },
         data: {
           name: updateRocketDto.name,
-          slug: updateRocketDto.slug,
           manufacturer: updateRocketDto.manufacturer,
           description: updateRocketDto.description,
           reusable: updateRocketDto.reusable,
