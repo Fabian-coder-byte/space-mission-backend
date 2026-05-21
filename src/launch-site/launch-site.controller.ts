@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { LaunchSitesService } from './launch-site.service.js';
@@ -29,6 +30,17 @@ export class LaunchSitesController {
   @Get()
   findAll() {
     return this.launchSitesService.findAll();
+  }
+
+  @Get('paginated')
+  findAllPaginated(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    return this.launchSitesService.findAllPaginated(
+      page ? Number(page) : 1,
+      limit ? Number(limit) : 10,
+    );
   }
 
   @Get(':id')

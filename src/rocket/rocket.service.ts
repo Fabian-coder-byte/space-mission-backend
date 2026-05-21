@@ -70,6 +70,32 @@ export class RocketsService {
     return rocket;
   }
 
+  async findAllPaginated(page = 1, limit = 10) {
+    const skip = (page - 1) * limit;
+
+    const [items, total] = await this.prisma.$transaction([
+      this.prisma.rocket.findMany({
+        skip,
+        take: limit,
+        orderBy: {
+          createdAt: 'desc',
+        },
+      }),
+
+      this.prisma.rocket.count(),
+    ]);
+
+    return {
+      items,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
+
   async update(id: string, updateRocketDto: UpdateRocketDto) {
     await this.findOne(id);
 

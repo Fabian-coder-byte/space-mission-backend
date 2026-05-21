@@ -5,7 +5,10 @@ import {
   Controller,
   Get,
   Headers,
+  Logger,
   Post,
+  Req,
+  Res,
   UnauthorizedException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service.js';
@@ -15,14 +18,35 @@ import { RefreshTokenDto } from './dto/RefreshTokenDto.js';
 import { ResetPasswordDto } from './dto/ResetPasswordDto.js';
 import { ResendConfirmationDto } from './dto/ResendConfirmationDto.js';
 import { ForgotPasswordDto } from './dto/ForgotPasswordDto.js';
+import type { Request, Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
-    return this.authService.login(loginDto);
+  async login(
+    @Body() loginDto: LoginDto,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const result = await this.authService.login(loginDto);
+
+    res.cookie('sb_access_token', result.session.accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      maxAge: 1000 * 60 * 60,
+      path: '/',
+    });
+
+    res.cookie('sb_refresh_token', result.session.refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+      path: '/auth/refresh',
+    });
+    return result;
   }
 
   @Post('register')

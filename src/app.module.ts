@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { AuthModule } from './auth/auth.module.js';
@@ -9,6 +9,7 @@ import { AgencyModule } from './agency/agency.module.js';
 import { RocketModule } from './rocket/rocket.module.js';
 import { LaunchSiteModule } from './launch-site/launch-site.module.js';
 import { MissionModule } from './mission/mission.module.js';
+import { LoggerMiddleware } from './common/middleware/logger.middleware.js';
 
 @Module({
   imports: [
@@ -27,4 +28,8 @@ import { MissionModule } from './mission/mission.module.js';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

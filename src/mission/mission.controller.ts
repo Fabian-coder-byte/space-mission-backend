@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { MissionsService } from './mission.service.js';
@@ -29,6 +30,17 @@ export class MissionsController {
   @Get()
   findAll() {
     return this.missionsService.findAll();
+  }
+
+  @Get('paginated')
+  findAllPaginated(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    return this.missionsService.findAllPaginated(
+      page ? Number(page) : 1,
+      limit ? Number(limit) : 10,
+    );
   }
 
   @Get(':id')

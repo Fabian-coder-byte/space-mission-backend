@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { RocketsService } from './rocket.service.js';
@@ -30,6 +31,17 @@ export class RocketsController {
   @Get()
   findAll() {
     return this.rocketsService.findAll();
+  }
+
+  @Get('paginated')
+  findAllPaginated(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    return this.rocketsService.findAllPaginated(
+      page ? Number(page) : 1,
+      limit ? Number(limit) : 10,
+    );
   }
 
   @Get(':id')

@@ -37,13 +37,39 @@ export class LaunchSitesService {
 
   async findAll() {
     return this.prisma.launchSite.findMany({
-      include: {
-        missions: true,
-      },
+      // include: {
+      //   missions: true,
+      // },
       orderBy: {
         createdAt: 'desc',
       },
     });
+  }
+
+  async findAllPaginated(page = 1, limit = 10) {
+    const skip = (page - 1) * limit;
+
+    const [items, total] = await this.prisma.$transaction([
+      this.prisma.launchSite.findMany({
+        skip,
+        take: limit,
+        orderBy: {
+          createdAt: 'desc',
+        },
+      }),
+
+      this.prisma.launchSite.count(),
+    ]);
+
+    return {
+      items,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
   }
 
   async findOne(id: string) {

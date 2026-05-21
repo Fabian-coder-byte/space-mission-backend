@@ -38,6 +38,44 @@ export class AgencyService {
     });
   }
 
+  async findAllPaginated(page = 1, limit = 10, search = '') {
+    const skip = (page - 1) * limit;
+
+    const where = search
+      ? {
+          name: {
+            contains: search,
+            mode: 'insensitive' as const,
+          },
+        }
+      : {};
+
+    const [items, total] = await this.prisma.$transaction([
+      this.prisma.agency.findMany({
+        skip,
+        take: limit,
+        orderBy: {
+          createdAt: 'desc',
+        },
+        where,
+      }),
+
+      this.prisma.agency.count({
+        where,
+      }),
+    ]);
+
+    return {
+      items,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
+
   async findOne(id: string) {
     const agency = await this.prisma.agency.findUnique({
       where: { id },

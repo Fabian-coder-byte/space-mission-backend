@@ -63,6 +63,32 @@ export class MissionsService {
     });
   }
 
+  async findAllPaginated(page = 1, limit = 10) {
+    const skip = (page - 1) * limit;
+
+    const [items, total] = await this.prisma.$transaction([
+      this.prisma.mission.findMany({
+        skip,
+        take: limit,
+        orderBy: {
+          createdAt: 'desc',
+        },
+      }),
+
+      this.prisma.mission.count(),
+    ]);
+
+    return {
+      items,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
+
   async findOne(id: string) {
     const mission = await this.prisma.mission.findUnique({
       where: { id },
