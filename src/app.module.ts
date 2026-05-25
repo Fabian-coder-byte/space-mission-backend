@@ -10,6 +10,8 @@ import { RocketModule } from './rocket/rocket.module.js';
 import { LaunchSiteModule } from './launch-site/launch-site.module.js';
 import { MissionModule } from './mission/mission.module.js';
 import { LoggerMiddleware } from './common/middleware/logger.middleware.js';
+import { ExternalApiModule } from './external-api/external-api.module.js';
+import { SpaceDataModule } from './space-data/space-data.module.js';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware.js';
     RocketModule,
     LaunchSiteModule,
     MissionModule,
+    ExternalApiModule,
+    SpaceDataModule,
   ],
   controllers: [AppController],
   providers: [AppService],

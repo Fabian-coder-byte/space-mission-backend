@@ -35,6 +35,7 @@ model Favorite {
 
 model Agency {
   id          String      @id @default(cuid())
+  externalId  String?     @unique
   name        String      @unique
   country     String?
   type        AgencyType?
@@ -52,6 +53,7 @@ model Agency {
 
 model Rocket {
   id              String        @id @default(cuid())
+  externalId  String?     @unique
   name            String        @unique
   manufacturer    String?
   description     String?
@@ -74,6 +76,7 @@ model Rocket {
 
 model LaunchSite {
   id           String    @id @default(cuid())
+  externalId  String?     @unique
   name         String    @unique
   code         String?   @unique
   locationName String?
@@ -92,6 +95,7 @@ model LaunchSite {
 
 model Mission {
   id           String        @id @default(cuid())
+  externalId  String?     @unique
   name         String
   description  String?
   missionType  MissionType?

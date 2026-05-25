@@ -44,6 +44,7 @@ export type RocketSumAggregateOutputType = {
 
 export type RocketMinAggregateOutputType = {
   id: string | null
+  externalId: string | null
   name: string | null
   manufacturer: string | null
   description: string | null
@@ -63,6 +64,7 @@ export type RocketMinAggregateOutputType = {
 
 export type RocketMaxAggregateOutputType = {
   id: string | null
+  externalId: string | null
   name: string | null
   manufacturer: string | null
   description: string | null
@@ -82,6 +84,7 @@ export type RocketMaxAggregateOutputType = {
 
 export type RocketCountAggregateOutputType = {
   id: number
+  externalId: number
   name: number
   manufacturer: number
   description: number
@@ -119,6 +122,7 @@ export type RocketSumAggregateInputType = {
 
 export type RocketMinAggregateInputType = {
   id?: true
+  externalId?: true
   name?: true
   manufacturer?: true
   description?: true
@@ -138,6 +142,7 @@ export type RocketMinAggregateInputType = {
 
 export type RocketMaxAggregateInputType = {
   id?: true
+  externalId?: true
   name?: true
   manufacturer?: true
   description?: true
@@ -157,6 +162,7 @@ export type RocketMaxAggregateInputType = {
 
 export type RocketCountAggregateInputType = {
   id?: true
+  externalId?: true
   name?: true
   manufacturer?: true
   description?: true
@@ -263,6 +269,7 @@ export type RocketGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type RocketGroupByOutputType = {
   id: string
+  externalId: string | null
   name: string
   manufacturer: string | null
   description: string | null
@@ -305,6 +312,7 @@ export type RocketWhereInput = {
   OR?: Prisma.RocketWhereInput[]
   NOT?: Prisma.RocketWhereInput | Prisma.RocketWhereInput[]
   id?: Prisma.StringFilter<"Rocket"> | string
+  externalId?: Prisma.StringNullableFilter<"Rocket"> | string | null
   name?: Prisma.StringFilter<"Rocket"> | string
   manufacturer?: Prisma.StringNullableFilter<"Rocket"> | string | null
   description?: Prisma.StringNullableFilter<"Rocket"> | string | null
@@ -326,6 +334,7 @@ export type RocketWhereInput = {
 
 export type RocketOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  externalId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -347,6 +356,7 @@ export type RocketOrderByWithRelationInput = {
 
 export type RocketWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  externalId?: string
   name?: string
   AND?: Prisma.RocketWhereInput | Prisma.RocketWhereInput[]
   OR?: Prisma.RocketWhereInput[]
@@ -367,10 +377,11 @@ export type RocketWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Rocket"> | Date | string
   missions?: Prisma.MissionListRelationFilter
   agency?: Prisma.XOR<Prisma.AgencyNullableScalarRelationFilter, Prisma.AgencyWhereInput> | null
-}, "id" | "name">
+}, "id" | "externalId" | "name">
 
 export type RocketOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  externalId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -398,6 +409,7 @@ export type RocketScalarWhereWithAggregatesInput = {
   OR?: Prisma.RocketScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RocketScalarWhereWithAggregatesInput | Prisma.RocketScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Rocket"> | string
+  externalId?: Prisma.StringNullableWithAggregatesFilter<"Rocket"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"Rocket"> | string
   manufacturer?: Prisma.StringNullableWithAggregatesFilter<"Rocket"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Rocket"> | string | null
@@ -417,6 +429,7 @@ export type RocketScalarWhereWithAggregatesInput = {
 
 export type RocketCreateInput = {
   id?: string
+  externalId?: string | null
   name: string
   manufacturer?: string | null
   description?: string | null
@@ -437,6 +450,7 @@ export type RocketCreateInput = {
 
 export type RocketUncheckedCreateInput = {
   id?: string
+  externalId?: string | null
   name: string
   manufacturer?: string | null
   description?: string | null
@@ -457,6 +471,7 @@ export type RocketUncheckedCreateInput = {
 
 export type RocketUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -477,6 +492,7 @@ export type RocketUpdateInput = {
 
 export type RocketUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -497,6 +513,7 @@ export type RocketUncheckedUpdateInput = {
 
 export type RocketCreateManyInput = {
   id?: string
+  externalId?: string | null
   name: string
   manufacturer?: string | null
   description?: string | null
@@ -516,6 +533,7 @@ export type RocketCreateManyInput = {
 
 export type RocketUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -534,6 +552,7 @@ export type RocketUpdateManyMutationInput = {
 
 export type RocketUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -563,6 +582,7 @@ export type RocketOrderByRelationAggregateInput = {
 
 export type RocketCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  externalId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -590,6 +610,7 @@ export type RocketAvgOrderByAggregateInput = {
 
 export type RocketMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  externalId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -609,6 +630,7 @@ export type RocketMaxOrderByAggregateInput = {
 
 export type RocketMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  externalId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   manufacturer?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -713,6 +735,7 @@ export type RocketUpdateOneRequiredWithoutMissionsNestedInput = {
 
 export type RocketCreateWithoutAgencyInput = {
   id?: string
+  externalId?: string | null
   name: string
   manufacturer?: string | null
   description?: string | null
@@ -732,6 +755,7 @@ export type RocketCreateWithoutAgencyInput = {
 
 export type RocketUncheckedCreateWithoutAgencyInput = {
   id?: string
+  externalId?: string | null
   name: string
   manufacturer?: string | null
   description?: string | null
@@ -780,6 +804,7 @@ export type RocketScalarWhereInput = {
   OR?: Prisma.RocketScalarWhereInput[]
   NOT?: Prisma.RocketScalarWhereInput | Prisma.RocketScalarWhereInput[]
   id?: Prisma.StringFilter<"Rocket"> | string
+  externalId?: Prisma.StringNullableFilter<"Rocket"> | string | null
   name?: Prisma.StringFilter<"Rocket"> | string
   manufacturer?: Prisma.StringNullableFilter<"Rocket"> | string | null
   description?: Prisma.StringNullableFilter<"Rocket"> | string | null
@@ -799,6 +824,7 @@ export type RocketScalarWhereInput = {
 
 export type RocketCreateWithoutMissionsInput = {
   id?: string
+  externalId?: string | null
   name: string
   manufacturer?: string | null
   description?: string | null
@@ -818,6 +844,7 @@ export type RocketCreateWithoutMissionsInput = {
 
 export type RocketUncheckedCreateWithoutMissionsInput = {
   id?: string
+  externalId?: string | null
   name: string
   manufacturer?: string | null
   description?: string | null
@@ -853,6 +880,7 @@ export type RocketUpdateToOneWithWhereWithoutMissionsInput = {
 
 export type RocketUpdateWithoutMissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -872,6 +900,7 @@ export type RocketUpdateWithoutMissionsInput = {
 
 export type RocketUncheckedUpdateWithoutMissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -891,6 +920,7 @@ export type RocketUncheckedUpdateWithoutMissionsInput = {
 
 export type RocketCreateManyAgencyInput = {
   id?: string
+  externalId?: string | null
   name: string
   manufacturer?: string | null
   description?: string | null
@@ -909,6 +939,7 @@ export type RocketCreateManyAgencyInput = {
 
 export type RocketUpdateWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -928,6 +959,7 @@ export type RocketUpdateWithoutAgencyInput = {
 
 export type RocketUncheckedUpdateWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -947,6 +979,7 @@ export type RocketUncheckedUpdateWithoutAgencyInput = {
 
 export type RocketUncheckedUpdateManyWithoutAgencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -996,6 +1029,7 @@ export type RocketCountOutputTypeCountMissionsArgs<ExtArgs extends runtime.Types
 
 export type RocketSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  externalId?: boolean
   name?: boolean
   manufacturer?: boolean
   description?: boolean
@@ -1018,6 +1052,7 @@ export type RocketSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 
 export type RocketSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  externalId?: boolean
   name?: boolean
   manufacturer?: boolean
   description?: boolean
@@ -1038,6 +1073,7 @@ export type RocketSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 
 export type RocketSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  externalId?: boolean
   name?: boolean
   manufacturer?: boolean
   description?: boolean
@@ -1058,6 +1094,7 @@ export type RocketSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 
 export type RocketSelectScalar = {
   id?: boolean
+  externalId?: boolean
   name?: boolean
   manufacturer?: boolean
   description?: boolean
@@ -1075,7 +1112,7 @@ export type RocketSelectScalar = {
   updatedAt?: boolean
 }
 
-export type RocketOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "manufacturer" | "description" | "reusable" | "status" | "heightMeters" | "diameterMeters" | "massKg" | "payloadToLeoKg" | "payloadToGtoKg" | "firstFlightDate" | "imageUrl" | "agencyId" | "createdAt" | "updatedAt", ExtArgs["result"]["rocket"]>
+export type RocketOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "externalId" | "name" | "manufacturer" | "description" | "reusable" | "status" | "heightMeters" | "diameterMeters" | "massKg" | "payloadToLeoKg" | "payloadToGtoKg" | "firstFlightDate" | "imageUrl" | "agencyId" | "createdAt" | "updatedAt", ExtArgs["result"]["rocket"]>
 export type RocketInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   missions?: boolean | Prisma.Rocket$missionsArgs<ExtArgs>
   agency?: boolean | Prisma.Rocket$agencyArgs<ExtArgs>
@@ -1096,6 +1133,7 @@ export type $RocketPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    externalId: string | null
     name: string
     manufacturer: string | null
     description: string | null
@@ -1537,6 +1575,7 @@ export interface Prisma__RocketClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface RocketFieldRefs {
   readonly id: Prisma.FieldRef<"Rocket", 'String'>
+  readonly externalId: Prisma.FieldRef<"Rocket", 'String'>
   readonly name: Prisma.FieldRef<"Rocket", 'String'>
   readonly manufacturer: Prisma.FieldRef<"Rocket", 'String'>
   readonly description: Prisma.FieldRef<"Rocket", 'String'>

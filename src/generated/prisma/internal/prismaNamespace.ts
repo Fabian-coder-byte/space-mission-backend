@@ -917,6 +917,7 @@ export type FavoriteScalarFieldEnum = (typeof FavoriteScalarFieldEnum)[keyof typ
 
 export const AgencyScalarFieldEnum = {
   id: 'id',
+  externalId: 'externalId',
   name: 'name',
   country: 'country',
   type: 'type',
@@ -933,6 +934,7 @@ export type AgencyScalarFieldEnum = (typeof AgencyScalarFieldEnum)[keyof typeof 
 
 export const RocketScalarFieldEnum = {
   id: 'id',
+  externalId: 'externalId',
   name: 'name',
   manufacturer: 'manufacturer',
   description: 'description',
@@ -955,6 +957,7 @@ export type RocketScalarFieldEnum = (typeof RocketScalarFieldEnum)[keyof typeof 
 
 export const LaunchSiteScalarFieldEnum = {
   id: 'id',
+  externalId: 'externalId',
   name: 'name',
   code: 'code',
   locationName: 'locationName',
@@ -973,6 +976,7 @@ export type LaunchSiteScalarFieldEnum = (typeof LaunchSiteScalarFieldEnum)[keyof
 
 export const MissionScalarFieldEnum = {
   id: 'id',
+  externalId: 'externalId',
   name: 'name',
   description: 'description',
   missionType: 'missionType',

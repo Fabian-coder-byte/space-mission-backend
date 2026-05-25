@@ -21,7 +21,12 @@ export type RocketStatus = (typeof RocketStatus)[keyof typeof RocketStatus]
 export const AgencyType = {
   GOVERNMENT: 'GOVERNMENT',
   PRIVATE: 'PRIVATE',
-  INTERNATIONAL: 'INTERNATIONAL'
+  INTERNATIONAL: 'INTERNATIONAL',
+  EDUCATIONAL: 'EDUCATIONAL',
+  OTHER: 'OTHER',
+  MULTINATIONAL: 'MULTINATIONAL',
+  COMMERCIAL: 'COMMERCIAL'
+
 } as const
 
 export type AgencyType = (typeof AgencyType)[keyof typeof AgencyType]
