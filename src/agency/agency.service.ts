@@ -7,7 +7,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service.js';
 import { CreateAgencyDto } from './dto/CreateAgencyDto.js';
 import { UpdateAgencyDto } from './dto/UpdateAgencyDto.js';
-
+import { stringify } from 'csv-stringify/sync';
 @Injectable()
 export class AgencyService {
   constructor(private readonly prisma: PrismaService) {}
@@ -133,5 +133,31 @@ export class AgencyService {
     return this.prisma.agency.delete({
       where: { id },
     });
+  }
+
+  async exportAgenciesCsv(): Promise<string> {
+    const agencies = await this.prisma.agency.findMany({
+      orderBy: {
+        name: 'asc',
+      },
+    });
+
+    const csv = stringify(agencies, {
+      header: true,
+      columns: [
+        { key: 'id', header: 'ID' },
+        { key: 'name', header: 'Nome' },
+        { key: 'country', header: 'Paese' },
+        { key: 'type', header: 'Tipo' },
+        { key: 'description', header: 'Descrizione' },
+        { key: 'website', header: 'Sito web' },
+        { key: 'logoUrl', header: 'Logo URL' },
+        { key: 'foundedYear', header: 'Anno fondazione' },
+        { key: 'createdAt', header: 'Creato il' },
+        { key: 'updatedAt', header: 'Aggiornato il' },
+      ],
+    });
+
+    return csv;
   }
 }

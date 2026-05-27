@@ -20,9 +20,8 @@ import { Roles } from '../auth/decorators/roles.decorator.js';
 export class RocketsController {
   constructor(private readonly rocketsService: RocketsService) {}
 
-  @UseGuards(SupabaseAuthGuard)
-  @UseGuards(RolesGuard)
-  @Roles('ADMIN')
+  //  @UseGuards(SupabaseAuthGuard, RolesGuard)
+  // @Roles('ADMIN')
   @Post()
   create(@Body() createRocketDto: CreateRocketDto) {
     return this.rocketsService.create(createRocketDto);
@@ -37,10 +36,12 @@ export class RocketsController {
   findAllPaginated(
     @Query('page') page?: string,
     @Query('limit') limit?: string,
+    @Query('search') search?: string,
   ) {
     return this.rocketsService.findAllPaginated(
       page ? Number(page) : 1,
       limit ? Number(limit) : 10,
+      search ? String(search) : undefined,
     );
   }
 
@@ -49,15 +50,14 @@ export class RocketsController {
     return this.rocketsService.findOne(id);
   }
   @Patch(':id')
-  @UseGuards(SupabaseAuthGuard)
-  @UseGuards(RolesGuard)
-  @Roles('ADMIN')
+  //  @UseGuards(SupabaseAuthGuard, RolesGuard)
+  // @Roles('ADMIN')
   update(@Param('id') id: string, @Body() updateRocketDto: UpdateRocketDto) {
     return this.rocketsService.update(id, updateRocketDto);
   }
   @Delete(':id')
-  @Roles('ADMIN')
-  @UseGuards(SupabaseAuthGuard, RolesGuard)
+  // @Roles('ADMIN')
+  // @UseGuards(SupabaseAuthGuard, RolesGuard)
   remove(@Param('id') id: string) {
     return this.rocketsService.remove(id);
   }

@@ -3,11 +3,12 @@ import {
   Controller,
   Delete,
   Get,
+  Header,
   Param,
   Patch,
   Post,
   Query,
-  UseGuards,
+  Res,
 } from '@nestjs/common';
 import { AgencyService } from './agency.service.js';
 import { CreateAgencyDto } from './dto/CreateAgencyDto.js';
@@ -15,6 +16,7 @@ import { UpdateAgencyDto } from './dto/UpdateAgencyDto.js';
 import { SupabaseAuthGuard } from '../auth/guards/supabase-auth.guard.js';
 import { RolesGuard } from '../auth/guards/roles.guard.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
+import type { Response } from 'express';
 
 @Controller('agencies')
 export class AgencyController {
@@ -61,5 +63,15 @@ export class AgencyController {
   @Roles('ADMIN')
   remove(@Param('id') id: string) {
     return this.agencyService.remove(id);
+  }
+
+  @Get('export/csv')
+  async exportCsv(@Res() res: Response) {
+    const csv = await this.agencyService.exportAgenciesCsv();
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename="agencies.csv"');
+
+    return res.send(csv);
   }
 }

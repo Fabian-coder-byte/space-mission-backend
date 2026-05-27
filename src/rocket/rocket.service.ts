@@ -70,7 +70,15 @@ export class RocketsService {
     return rocket;
   }
 
-  async findAllPaginated(page = 1, limit = 10) {
+  async findAllPaginated(page = 1, limit = 10, search = '') {
+    const where = search
+      ? {
+          name: {
+            contains: search,
+            mode: 'insensitive' as const,
+          },
+        }
+      : {};
     const skip = (page - 1) * limit;
 
     const [items, total] = await this.prisma.$transaction([
@@ -80,9 +88,12 @@ export class RocketsService {
         orderBy: {
           createdAt: 'desc',
         },
+        where,
       }),
 
-      this.prisma.rocket.count(),
+      this.prisma.rocket.count({
+        where,
+      }),
     ]);
 
     return {
