@@ -45,6 +45,11 @@ export class MissionsController {
     );
   }
 
+  @Get('upcoming')
+  findUpcoming(@Query('limit') limit?: string) {
+    return this.missionsService.findUpcoming(limit ? Number(limit) : undefined);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.missionsService.findOne(id);

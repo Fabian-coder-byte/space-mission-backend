@@ -22,6 +22,11 @@ export class FavoritesController {
     return this.favoritesService.findAllByUser(req.user.id);
   }
 
+  @Get('check/:launchId')
+  checkFavorite(@Req() req: any, @Param('launchId') launchId: string) {
+    return this.favoritesService.checkFavorite(req.user.id, launchId);
+  }
+
   @Post()
   create(@Req() req: any, @Body() dto: CreateFavoriteDto) {
     return this.favoritesService.create(req.user.id, dto);

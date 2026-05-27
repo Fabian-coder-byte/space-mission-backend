@@ -50,6 +50,22 @@ export class MissionsService {
     }
   }
 
+  async findUpcoming(limit?: number) {
+    return this.prisma.mission.findMany({
+      where: {
+        launchDate: { gte: new Date() },
+        status: { in: ['SCHEDULED', 'CONFIRMED'] },
+      },
+      orderBy: { launchDate: 'asc' },
+      take: limit,
+      include: {
+        agency: true,
+        rocket: true,
+        launchSite: true,
+      },
+    });
+  }
+
   async findAll() {
     return this.prisma.mission.findMany({
       include: {

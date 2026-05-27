@@ -83,19 +83,19 @@ export class SpaceDataService {
         return AgencyType.GOVERNMENT;
 
       case 'commercial':
-        return AgencyType.COMMERCIAL;
+        return AgencyType.PRIVATE;
 
       case 'multinational':
-        return AgencyType.MULTINATIONAL;
+        return AgencyType.INTERNATIONAL;
 
       case 'educational':
-        return AgencyType.EDUCATIONAL;
+        return AgencyType.GOVERNMENT;
 
       case 'private':
         return AgencyType.PRIVATE;
 
       default:
-        return AgencyType.OTHER;
+        return AgencyType.GOVERNMENT;
     }
   }
 }

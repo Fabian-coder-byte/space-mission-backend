@@ -17,6 +17,13 @@ export class FavoritesService {
     });
   }
 
+  async checkFavorite(userId: string, launchId: string) {
+    const favorite = await this.prisma.favorite.findFirst({
+      where: { userId, launchId },
+    });
+    return { isFavorite: !!favorite, favoriteId: favorite?.id ?? null };
+  }
+
   async create(userId: string, dto: CreateFavoriteDto) {
     try {
       return await this.prisma.favorite.create({
