@@ -56,7 +56,8 @@ export const ModelName = {
   Agency: 'Agency',
   Rocket: 'Rocket',
   LaunchSite: 'LaunchSite',
-  Mission: 'Mission'
+  Mission: 'Mission',
+  SiteSettings: 'SiteSettings'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -180,6 +181,29 @@ export const MissionScalarFieldEnum = {
 } as const
 
 export type MissionScalarFieldEnum = (typeof MissionScalarFieldEnum)[keyof typeof MissionScalarFieldEnum]
+
+
+export const SiteSettingsScalarFieldEnum = {
+  id: 'id',
+  siteName: 'siteName',
+  siteDescription: 'siteDescription',
+  logoUrl: 'logoUrl',
+  contactEmail: 'contactEmail',
+  supportEmail: 'supportEmail',
+  facebookUrl: 'facebookUrl',
+  instagramUrl: 'instagramUrl',
+  xUrl: 'xUrl',
+  youtubeUrl: 'youtubeUrl',
+  footerText: 'footerText',
+  showUpcomingMissionsOnHome: 'showUpcomingMissionsOnHome',
+  showAgenciesOnHome: 'showAgenciesOnHome',
+  showRocketsOnHome: 'showRocketsOnHome',
+  maintenanceMode: 'maintenanceMode',
+  allowRegistrations: 'allowRegistrations',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteSettingsScalarFieldEnum = (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum]
 
 
 export const SortOrder = {

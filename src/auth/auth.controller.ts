@@ -6,6 +6,7 @@ import {
   Get,
   Headers,
   Logger,
+  Patch,
   Post,
   Req,
   Res,
@@ -18,6 +19,8 @@ import { RefreshTokenDto } from './dto/RefreshTokenDto.js';
 import { ResetPasswordDto } from './dto/ResetPasswordDto.js';
 import { ResendConfirmationDto } from './dto/ResendConfirmationDto.js';
 import { ForgotPasswordDto } from './dto/ForgotPasswordDto.js';
+import { UpdateProfileDto } from './dto/UpdateProfileDto.js';
+import { ChangePasswordDto } from './dto/ChangePasswordDto.js';
 import type { Request, Response } from 'express';
 
 @Controller('auth')
@@ -84,6 +87,24 @@ export class AuthController {
   @Post('reset-password')
   async resetPassword(@Body() dto: ResetPasswordDto) {
     return await this.authService.resetPassword(dto);
+  }
+
+  @Patch('profile')
+  async updateProfile(
+    @Headers('authorization') authorization: string,
+    @Body() dto: UpdateProfileDto,
+  ) {
+    const accessToken = this.extractBearerToken(authorization);
+    return await this.authService.updateProfile(accessToken, dto);
+  }
+
+  @Post('change-password')
+  async changePassword(
+    @Headers('authorization') authorization: string,
+    @Body() dto: ChangePasswordDto,
+  ) {
+    const accessToken = this.extractBearerToken(authorization);
+    return await this.authService.changePassword(accessToken, dto);
   }
 
   private extractBearerToken(authorization?: string): string {

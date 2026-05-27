@@ -36,10 +36,12 @@ export class LaunchSitesController {
   findAllPaginated(
     @Query('page') page?: string,
     @Query('limit') limit?: string,
+    @Query('search') search?: string,
   ) {
     return this.launchSitesService.findAllPaginated(
       page ? Number(page) : 1,
       limit ? Number(limit) : 10,
+      search,
     );
   }
 

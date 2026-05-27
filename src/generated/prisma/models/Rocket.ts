@@ -656,9 +656,9 @@ export type RocketSumOrderByAggregateInput = {
   payloadToGtoKg?: Prisma.SortOrder
 }
 
-export type RocketScalarRelationFilter = {
-  is?: Prisma.RocketWhereInput
-  isNot?: Prisma.RocketWhereInput
+export type RocketNullableScalarRelationFilter = {
+  is?: Prisma.RocketWhereInput | null
+  isNot?: Prisma.RocketWhereInput | null
 }
 
 export type RocketCreateNestedManyWithoutAgencyInput = {
@@ -725,10 +725,12 @@ export type RocketCreateNestedOneWithoutMissionsInput = {
   connect?: Prisma.RocketWhereUniqueInput
 }
 
-export type RocketUpdateOneRequiredWithoutMissionsNestedInput = {
+export type RocketUpdateOneWithoutMissionsNestedInput = {
   create?: Prisma.XOR<Prisma.RocketCreateWithoutMissionsInput, Prisma.RocketUncheckedCreateWithoutMissionsInput>
   connectOrCreate?: Prisma.RocketCreateOrConnectWithoutMissionsInput
   upsert?: Prisma.RocketUpsertWithoutMissionsInput
+  disconnect?: Prisma.RocketWhereInput | boolean
+  delete?: Prisma.RocketWhereInput | boolean
   connect?: Prisma.RocketWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.RocketUpdateToOneWithWhereWithoutMissionsInput, Prisma.RocketUpdateWithoutMissionsInput>, Prisma.RocketUncheckedUpdateWithoutMissionsInput>
 }

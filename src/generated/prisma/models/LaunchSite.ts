@@ -538,9 +538,9 @@ export type LaunchSiteSumOrderByAggregateInput = {
   longitude?: Prisma.SortOrder
 }
 
-export type LaunchSiteScalarRelationFilter = {
-  is?: Prisma.LaunchSiteWhereInput
-  isNot?: Prisma.LaunchSiteWhereInput
+export type LaunchSiteNullableScalarRelationFilter = {
+  is?: Prisma.LaunchSiteWhereInput | null
+  isNot?: Prisma.LaunchSiteWhereInput | null
 }
 
 export type LaunchSiteCreateNestedOneWithoutMissionsInput = {
@@ -549,10 +549,12 @@ export type LaunchSiteCreateNestedOneWithoutMissionsInput = {
   connect?: Prisma.LaunchSiteWhereUniqueInput
 }
 
-export type LaunchSiteUpdateOneRequiredWithoutMissionsNestedInput = {
+export type LaunchSiteUpdateOneWithoutMissionsNestedInput = {
   create?: Prisma.XOR<Prisma.LaunchSiteCreateWithoutMissionsInput, Prisma.LaunchSiteUncheckedCreateWithoutMissionsInput>
   connectOrCreate?: Prisma.LaunchSiteCreateOrConnectWithoutMissionsInput
   upsert?: Prisma.LaunchSiteUpsertWithoutMissionsInput
+  disconnect?: Prisma.LaunchSiteWhereInput | boolean
+  delete?: Prisma.LaunchSiteWhereInput | boolean
   connect?: Prisma.LaunchSiteWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.LaunchSiteUpdateToOneWithWhereWithoutMissionsInput, Prisma.LaunchSiteUpdateWithoutMissionsInput>, Prisma.LaunchSiteUncheckedUpdateWithoutMissionsInput>
 }

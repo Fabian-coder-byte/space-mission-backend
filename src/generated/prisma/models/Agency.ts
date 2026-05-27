@@ -500,11 +500,6 @@ export type AgencyNullableScalarRelationFilter = {
   isNot?: Prisma.AgencyWhereInput | null
 }
 
-export type AgencyScalarRelationFilter = {
-  is?: Prisma.AgencyWhereInput
-  isNot?: Prisma.AgencyWhereInput
-}
-
 export type NullableEnumAgencyTypeFieldUpdateOperationsInput = {
   set?: $Enums.AgencyType | null
 }
@@ -539,10 +534,12 @@ export type AgencyCreateNestedOneWithoutMissionsInput = {
   connect?: Prisma.AgencyWhereUniqueInput
 }
 
-export type AgencyUpdateOneRequiredWithoutMissionsNestedInput = {
+export type AgencyUpdateOneWithoutMissionsNestedInput = {
   create?: Prisma.XOR<Prisma.AgencyCreateWithoutMissionsInput, Prisma.AgencyUncheckedCreateWithoutMissionsInput>
   connectOrCreate?: Prisma.AgencyCreateOrConnectWithoutMissionsInput
   upsert?: Prisma.AgencyUpsertWithoutMissionsInput
+  disconnect?: Prisma.AgencyWhereInput | boolean
+  delete?: Prisma.AgencyWhereInput | boolean
   connect?: Prisma.AgencyWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.AgencyUpdateToOneWithWhereWithoutMissionsInput, Prisma.AgencyUpdateWithoutMissionsInput>, Prisma.AgencyUncheckedUpdateWithoutMissionsInput>
 }

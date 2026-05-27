@@ -35,9 +35,9 @@ export class MissionsService {
           isCrewed: createMissionDto.isCrewed ?? false,
           imageUrl: createMissionDto.imageUrl,
           detailsUrl: createMissionDto.detailsUrl,
-          agencyId: createMissionDto.agencyId,
-          rocketId: createMissionDto.rocketId,
-          launchSiteId: createMissionDto.launchSiteId,
+          agencyId: createMissionDto.agencyId ?? null,
+          rocketId: createMissionDto.rocketId ?? null,
+          launchSiteId: createMissionDto.launchSiteId ?? null,
         },
         include: {
           agency: true,
@@ -63,11 +63,15 @@ export class MissionsService {
     });
   }
 
-  async findAllPaginated(page = 1, limit = 10) {
+  async findAllPaginated(page = 1, limit = 10, search?: string) {
     const skip = (page - 1) * limit;
+    const where = search
+      ? { name: { contains: search, mode: Prisma.QueryMode.insensitive } }
+      : undefined;
 
     const [items, total] = await this.prisma.$transaction([
       this.prisma.mission.findMany({
+        where,
         skip,
         take: limit,
         orderBy: {
@@ -75,7 +79,7 @@ export class MissionsService {
         },
       }),
 
-      this.prisma.mission.count(),
+      this.prisma.mission.count({ where }),
     ]);
 
     return {
@@ -131,9 +135,9 @@ export class MissionsService {
           isCrewed: updateMissionDto.isCrewed,
           imageUrl: updateMissionDto.imageUrl,
           detailsUrl: updateMissionDto.detailsUrl,
-          agencyId: updateMissionDto.agencyId,
-          rocketId: updateMissionDto.rocketId,
-          launchSiteId: updateMissionDto.launchSiteId,
+          agencyId: updateMissionDto.agencyId ?? null,
+          rocketId: updateMissionDto.rocketId ?? null,
+          launchSiteId: updateMissionDto.launchSiteId ?? null,
         },
         include: {
           agency: true,

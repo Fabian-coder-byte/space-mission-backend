@@ -8,6 +8,8 @@ import { RegisterDto } from './dto/RegisterDto.js';
 import { RefreshTokenDto } from './dto/RefreshTokenDto.js';
 import { ResetPasswordDto } from './dto/ResetPasswordDto.js';
 import { ResendConfirmationDto } from './dto/ResendConfirmationDto.js';
+import { UpdateProfileDto } from './dto/UpdateProfileDto.js';
+import { ChangePasswordDto } from './dto/ChangePasswordDto.js';
 import { SupabaseService } from '../supabase/supabase.service.js';
 import { ForgotPasswordDto } from './dto/ForgotPasswordDto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
@@ -189,6 +191,76 @@ export class AuthService {
     return {
       message: 'Email per reset password inviata con successo',
     };
+  }
+
+  async updateProfile(accessToken: string, dto: UpdateProfileDto) {
+    const supabase = this.supabaseService.getClient();
+
+    const { data: userData, error: userError } =
+      await supabase.auth.getUser(accessToken);
+
+    if (userError || !userData.user) {
+      throw new UnauthorizedException('Token non valido');
+    }
+
+    const existing = userData.user.user_metadata ?? {};
+    const updatedMeta = {
+      ...existing,
+      ...(dto.username !== undefined && { username: dto.username }),
+      ...(dto.name !== undefined && { name: dto.name }),
+      ...(dto.bio !== undefined && { bio: dto.bio }),
+    };
+
+    const adminClient = this.supabaseService.getAdminClient();
+    const { data, error } = await adminClient.auth.admin.updateUserById(
+      userData.user.id,
+      { user_metadata: updatedMeta },
+    );
+
+    if (error) {
+      throw new BadRequestException(error.message);
+    }
+
+    return {
+      message: 'Profilo aggiornato con successo',
+      user: {
+        id: data.user.id,
+        email: data.user.email,
+        userMetadata: data.user.user_metadata,
+      },
+    };
+  }
+
+  async changePassword(accessToken: string, dto: ChangePasswordDto) {
+    const supabase = this.supabaseService.getClient();
+
+    const { data: userData, error: userError } =
+      await supabase.auth.getUser(accessToken);
+
+    if (userError || !userData.user?.email) {
+      throw new UnauthorizedException('Token non valido');
+    }
+
+    const { error: verifyError } = await supabase.auth.signInWithPassword({
+      email: userData.user.email,
+      password: dto.currentPassword,
+    });
+
+    if (verifyError) {
+      throw new BadRequestException('Password attuale non corretta');
+    }
+
+    const adminClient = this.supabaseService.getAdminClient();
+    const { error } = await adminClient.auth.admin.updateUserById(
+      userData.user.id,
+      { password: dto.newPassword },
+    );
+
+    if (error) {
+      throw new BadRequestException(error.message);
+    }
+
+    return { message: 'Password aggiornata con successo' };
   }
 
   async resetPassword(dto: ResetPasswordDto) {

@@ -12,6 +12,10 @@ import { MissionModule } from './mission/mission.module.js';
 import { LoggerMiddleware } from './common/middleware/logger.middleware.js';
 import { ExternalApiModule } from './external-api/external-api.module.js';
 import { SpaceDataModule } from './space-data/space-data.module.js';
+import { UsersModule } from './users/users.module.js';
+import { FavoritesModule } from './favorites/favorites.module.js';
+import { SiteSettingsModule } from './site-settings/site-settings.module.js';
+import { StatsModule } from './stats/stats.module.js';
 
 @Module({
   imports: [
@@ -28,6 +32,10 @@ import { SpaceDataModule } from './space-data/space-data.module.js';
     MissionModule,
     ExternalApiModule,
     SpaceDataModule,
+    UsersModule,
+    FavoritesModule,
+    SiteSettingsModule,
+    StatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

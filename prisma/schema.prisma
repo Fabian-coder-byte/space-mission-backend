@@ -108,17 +108,39 @@ model Mission {
   isCrewed     Boolean       @default(false)
   imageUrl     String?
   detailsUrl   String?
-  agencyId     String
-  rocketId     String
-  launchSiteId String
+  agencyId     String?
+  rocketId     String?
+  launchSiteId String?
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
-  agency       Agency        @relation(fields: [agencyId], references: [id])
-  launchSite   LaunchSite    @relation(fields: [launchSiteId], references: [id])
-  rocket       Rocket        @relation(fields: [rocketId], references: [id])
+  agency       Agency?       @relation(fields: [agencyId], references: [id])
+  launchSite   LaunchSite?   @relation(fields: [launchSiteId], references: [id])
+  rocket       Rocket?       @relation(fields: [rocketId], references: [id])
 
   @@unique([name, launchDate])
   @@map("mission")
+}
+
+model SiteSettings {
+  id                        String   @id @default("main")
+  siteName                  String   @default("Space Mission")
+  siteDescription           String?
+  logoUrl                   String?
+  contactEmail              String   @default("info@spacemission.com")
+  supportEmail              String?
+  facebookUrl               String?
+  instagramUrl              String?
+  xUrl                      String?
+  youtubeUrl                String?
+  footerText                String?
+  showUpcomingMissionsOnHome Boolean  @default(true)
+  showAgenciesOnHome        Boolean  @default(true)
+  showRocketsOnHome         Boolean  @default(true)
+  maintenanceMode           Boolean  @default(false)
+  allowRegistrations        Boolean  @default(true)
+  updatedAt                 DateTime @updatedAt
+
+  @@map("site_settings")
 }
 
 enum RocketStatus {

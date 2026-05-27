@@ -3,10 +3,10 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { Prisma } from '../generated/prisma/client.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { CreateLaunchSiteDto } from './dto/create-launch-site.dto.js';
 import { UpdateLaunchSiteDto } from './dto/update-launch-site.dto.js';
-import { Prisma } from '../generated/prisma/client.js';
 
 @Injectable()
 export class LaunchSitesService {
@@ -46,11 +46,15 @@ export class LaunchSitesService {
     });
   }
 
-  async findAllPaginated(page = 1, limit = 10) {
+  async findAllPaginated(page = 1, limit = 10, search?: string) {
     const skip = (page - 1) * limit;
+    const where = search
+      ? { name: { contains: search, mode: Prisma.QueryMode.insensitive } }
+      : undefined;
 
     const [items, total] = await this.prisma.$transaction([
       this.prisma.launchSite.findMany({
+        where,
         skip,
         take: limit,
         orderBy: {
@@ -58,7 +62,7 @@ export class LaunchSitesService {
         },
       }),
 
-      this.prisma.launchSite.count(),
+      this.prisma.launchSite.count({ where }),
     ]);
 
     return {

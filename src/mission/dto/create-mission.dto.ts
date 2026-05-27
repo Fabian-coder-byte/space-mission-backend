@@ -59,12 +59,15 @@ export class CreateMissionDto {
   @IsUrl()
   detailsUrl?: string;
 
+  @IsOptional()
   @IsString()
-  agencyId: string;
+  agencyId?: string;
 
+  @IsOptional()
   @IsString()
-  rocketId: string;
+  rocketId?: string;
 
+  @IsOptional()
   @IsString()
-  launchSiteId: string;
+  launchSiteId?: string;
 }

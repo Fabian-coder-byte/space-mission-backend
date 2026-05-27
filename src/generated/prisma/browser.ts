@@ -47,3 +47,8 @@ export type LaunchSite = Prisma.LaunchSiteModel
  * 
  */
 export type Mission = Prisma.MissionModel
+/**
+ * Model SiteSettings
+ * 
+ */
+export type SiteSettings = Prisma.SiteSettingsModel
