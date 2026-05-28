@@ -74,7 +74,11 @@
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
+      "^.+\\.(t|j)s$": ["ts-jest", { "tsconfig": "tsconfig.test.json" }]
+    },
+    "moduleNameMapper": {
+      "generated.prisma.client": "<rootDir>/__mocks__/prisma-client",
+      "^(\\.{1,2}/.+)\\.js$": "$1"
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"
