@@ -1,86 +1,71 @@
-import { Injectable } from '@nestjs/common';
-import { SupabaseService } from '../supabase/supabase.service.js';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Prisma } from '../generated/prisma/client.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    private readonly supabaseService: SupabaseService,
-    private readonly prisma: PrismaService,
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async findAll(page = 1, limit = 10, search?: string) {
-    const adminClient = this.supabaseService.getAdminClient();
+    const skip = (page - 1) * limit;
 
-    const { data, error } = await adminClient.auth.admin.listUsers({
-      page,
-      perPage: limit,
-    });
+    const where: Prisma.ProfileWhereInput = search
+      ? {
+          OR: [
+            { email: { contains: search, mode: Prisma.QueryMode.insensitive } },
+            { username: { contains: search, mode: Prisma.QueryMode.insensitive } },
+          ],
+        }
+      : {};
 
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    const profiles = await this.prisma.profile.findMany({
-      select: { id: true, role: true },
-    });
-
-    const profileMap = new Map(profiles.map((p) => [p.id, p.role]));
-
-    let users = data.users.map((u) => ({
-      id: u.id,
-      email: u.email,
-      username: u.user_metadata?.username ?? null,
-      emailConfirmedAt: u.email_confirmed_at,
-      createdAt: u.created_at,
-      lastSignInAt: u.last_sign_in_at,
-      provider: u.app_metadata?.provider ?? 'email',
-      role: profileMap.get(u.id) ?? 'USER',
-    }));
-
-    if (search) {
-      const q = search.toLowerCase();
-      users = users.filter(
-        (u) =>
-          u.email?.toLowerCase().includes(q) ||
-          u.username?.toLowerCase().includes(q),
-      );
-    }
+    const [profiles, total] = await this.prisma.$transaction([
+      this.prisma.profile.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+      }),
+      this.prisma.profile.count({ where }),
+    ]);
 
     return {
-      items: users,
+      items: profiles.map((p) => ({
+        id: p.id,
+        email: p.email ?? '—',
+        username: p.username ?? null,
+        emailConfirmedAt: null,
+        createdAt: p.createdAt,
+        lastSignInAt: null,
+        provider: 'email',
+        role: p.role,
+      })),
       meta: {
-        total: data.total ?? users.length,
+        total,
         page,
         limit,
-        totalPages: Math.ceil((data.total ?? users.length) / limit),
+        totalPages: Math.ceil(total / limit),
       },
     };
   }
 
   async findOne(id: string) {
-    const adminClient = this.supabaseService.getAdminClient();
-
-    const { data, error } = await adminClient.auth.admin.getUserById(id);
-
-    if (error || !data.user) {
-      throw new Error(error?.message ?? 'Utente non trovato');
-    }
-
     const profile = await this.prisma.profile.findUnique({
       where: { id },
-      select: { id: true, role: true },
     });
 
+    if (!profile) {
+      throw new NotFoundException('Utente non trovato');
+    }
+
     return {
-      id: data.user.id,
-      email: data.user.email,
-      username: data.user.user_metadata?.username ?? null,
-      emailConfirmedAt: data.user.email_confirmed_at,
-      createdAt: data.user.created_at,
-      lastSignInAt: data.user.last_sign_in_at,
-      provider: data.user.app_metadata?.provider ?? 'email',
-      role: profile?.role ?? 'USER',
+      id: profile.id,
+      email: profile.email ?? '—',
+      username: profile.username ?? null,
+      emailConfirmedAt: null,
+      createdAt: profile.createdAt,
+      lastSignInAt: null,
+      provider: 'email',
+      role: profile.role,
     };
   }
 }

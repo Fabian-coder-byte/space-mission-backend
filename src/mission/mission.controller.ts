@@ -50,6 +50,11 @@ export class MissionsController {
     return this.missionsService.findUpcoming(limit ? Number(limit) : undefined);
   }
 
+  @Get('chart-stats')
+  getChartStats() {
+    return this.missionsService.getChartStats();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.missionsService.findOne(id);

@@ -137,17 +137,20 @@ export class AuthService {
       );
     }
 
-    const profile = await this.prisma.profile.findUnique({
+    const profile = await this.prisma.profile.upsert({
       where: { id: data.user.id },
-      select: {
-        id: true,
-        role: true,
+      update: {
+        email: data.user.email,
+        username: (data.user.user_metadata?.username as string | undefined) ?? undefined,
       },
+      create: {
+        id: data.user.id,
+        email: data.user.email,
+        username: (data.user.user_metadata?.username as string | undefined) ?? null,
+        role: 'USER',
+      },
+      select: { id: true, role: true },
     });
-
-    if (!profile) {
-      throw new UnauthorizedException('Profilo utente non trovato');
-    }
 
     return {
       user: {
@@ -156,6 +159,7 @@ export class AuthService {
         emailConfirmedAt: data.user.email_confirmed_at,
         userMetadata: data.user.user_metadata,
         role: profile.role,
+        createdAt: data.user.created_at,
       },
     };
   }

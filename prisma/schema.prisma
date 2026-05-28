@@ -12,9 +12,11 @@ datasource db {
 
 model Profile {
   id        String     @id @db.Uuid
+  email     String?
+  username  String?
   createdAt DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
   favorites Favorite[]
-  role Role @default(USER)
+  role      Role       @default(USER)
   @@map("profiles")
 }
 

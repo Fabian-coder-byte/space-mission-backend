@@ -50,6 +50,62 @@ export class MissionsService {
     }
   }
 
+  async getChartStats() {
+    const now = new Date();
+    const sixMonthsLater = new Date(now);
+    sixMonthsLater.setMonth(sixMonthsLater.getMonth() + 6);
+    const twelveMonthsAgo = new Date(now);
+    twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
+
+    const [upcoming, recentMissions, statusCounts] = await Promise.all([
+      this.prisma.mission.findMany({
+        where: {
+          launchDate: { gte: now, lte: sixMonthsLater },
+          status: { in: ['SCHEDULED', 'CONFIRMED'] },
+        },
+        orderBy: { launchDate: 'asc' },
+        take: 10,
+        select: {
+          id: true,
+          name: true,
+          launchDate: true,
+          status: true,
+          agency: { select: { name: true } },
+        },
+      }),
+      this.prisma.mission.findMany({
+        where: { launchDate: { gte: twelveMonthsAgo } },
+        select: { launchDate: true, status: true },
+      }),
+      this.prisma.mission.groupBy({
+        by: ['status'],
+        _count: { id: true },
+      }),
+    ]);
+
+    const byMonthMap: Record<string, number> = {};
+    recentMissions.forEach((m) => {
+      if (!m.launchDate) return;
+      const d = new Date(m.launchDate);
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+      byMonthMap[key] = (byMonthMap[key] ?? 0) + 1;
+    });
+
+    const byMonth: { month: string; count: number }[] = [];
+    for (let i = -11; i <= 0; i++) {
+      const d = new Date(now);
+      d.setMonth(d.getMonth() + i);
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+      byMonth.push({ month: key, count: byMonthMap[key] ?? 0 });
+    }
+
+    return {
+      upcoming,
+      byMonth,
+      byStatus: statusCounts.map((s) => ({ status: s.status, count: s._count.id })),
+    };
+  }
+
   async findUpcoming(limit?: number) {
     return this.prisma.mission.findMany({
       where: {
